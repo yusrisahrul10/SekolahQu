@@ -1,9 +1,8 @@
 package com.dscunikom.android.sekolahqu.preload;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,10 +11,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.dscunikom.android.sekolahqu.MvpActivity;
+import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.RecyclerItemClickListener;
+import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
+import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 import com.dscunikom.android.sekolahqu.adapter.SekolahAdapter;
 import com.dscunikom.android.sekolahqu.model.Sekolah;
 import com.dscunikom.android.sekolahqu.model.SekolahResponse;
@@ -29,6 +28,7 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
     RecyclerView recyclerView;
     @BindView(R.id.progress_list_sekolah)
     ProgressBar progressBar;
+    SessionManager sessionManager;
 
     @Override
     protected SekolahListPresenter createPresenter() {
@@ -39,7 +39,7 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sekolah_list);
-
+        sessionManager = new SessionManager(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -51,6 +51,7 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
             @Override
             public void onItemClick(View view, int position) {
                 presenter.getSekolahToNotif(list.get(position), activity);
+                sessionManager.createIdSekolah(list.get(position).getIdSekolah());
                 Log.e("Message", "Message: "+ list.get(position).getNamaSekolah());
             }
 

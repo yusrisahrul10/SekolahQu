@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu;
+package com.dscunikom.android.sekolahqu.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

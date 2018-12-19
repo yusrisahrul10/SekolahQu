@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu;
+package com.dscunikom.android.sekolahqu.network;
 
 import android.util.Log;
 import retrofit2.adapter.rxjava.HttpException;

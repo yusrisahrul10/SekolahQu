@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu;
+package com.dscunikom.android.sekolahqu.base.ui;
 
 import android.app.Activity;
 import android.os.Bundle;

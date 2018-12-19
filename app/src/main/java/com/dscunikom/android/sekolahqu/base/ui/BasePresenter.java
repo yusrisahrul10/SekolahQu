@@ -1,6 +1,8 @@
-package com.dscunikom.android.sekolahqu;
+package com.dscunikom.android.sekolahqu.base.ui;
 
 import android.util.Log;
+import com.dscunikom.android.sekolahqu.network.NetworkClient;
+import com.dscunikom.android.sekolahqu.network.NetworkStores;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

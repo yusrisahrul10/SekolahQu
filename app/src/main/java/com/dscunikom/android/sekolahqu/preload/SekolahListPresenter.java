@@ -1,15 +1,18 @@
 package com.dscunikom.android.sekolahqu.preload;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import com.dscunikom.android.sekolahqu.BasePresenter;
-import com.dscunikom.android.sekolahqu.NetworkCallback;
+import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
+import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 import com.dscunikom.android.sekolahqu.main.MainActivity;
 import com.dscunikom.android.sekolahqu.model.Sekolah;
 import com.dscunikom.android.sekolahqu.model.SekolahResponse;
+import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 
 public class SekolahListPresenter extends BasePresenter<SekolahListView> {
-
+    SessionManager sessionManager;
+    Context context;
     SekolahListPresenter(SekolahListView view){
         super.attachView(view);
     }

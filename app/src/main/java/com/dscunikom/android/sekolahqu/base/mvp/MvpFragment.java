@@ -1,9 +1,11 @@
-package com.dscunikom.android.sekolahqu;
+package com.dscunikom.android.sekolahqu.base.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import com.dscunikom.android.sekolahqu.base.ui.BaseFragment;
+import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
 
 public abstract class MvpFragment<P extends BasePresenter> extends BaseFragment {
     protected P presenter;
