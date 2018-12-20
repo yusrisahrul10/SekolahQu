@@ -2,7 +2,7 @@ package com.dscunikom.android.sekolahqu.home.awards;
 
 import android.util.Log;
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
-import com.dscunikom.android.sekolahqu.model.PrestasiResponse;
+import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 
 public class PrestasiPresenter extends BasePresenter<PrestasiView> {
@@ -10,7 +10,7 @@ public class PrestasiPresenter extends BasePresenter<PrestasiView> {
     public PrestasiPresenter(PrestasiView view) {
         super.attachView(view);
     }
-    void getData(String id){
+    void getDataPrestasi(String id){
         view.showLoading();
        addSubscribe(apiStores.getListPrestasi(id), new NetworkCallback<PrestasiResponse>() {
            @Override

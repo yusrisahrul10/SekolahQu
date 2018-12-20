@@ -1,5 +1,5 @@
 
-package com.dscunikom.android.sekolahqu.model;
+package com.dscunikom.android.sekolahqu.model.sekolah;
 
 import java.util.List;
 import javax.annotation.Generated;

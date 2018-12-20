@@ -1,7 +1,7 @@
 package com.dscunikom.android.sekolahqu.home.sekolah.visimisi;
 
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
-import com.dscunikom.android.sekolahqu.model.Sekolah;
+import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 
 public class VisiMisiPresenter extends BasePresenter<VisiMisiView> {

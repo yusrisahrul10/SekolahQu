@@ -6,8 +6,8 @@ import android.content.Intent;
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 import com.dscunikom.android.sekolahqu.main.MainActivity;
-import com.dscunikom.android.sekolahqu.model.Sekolah;
-import com.dscunikom.android.sekolahqu.model.SekolahResponse;
+import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
+import com.dscunikom.android.sekolahqu.model.sekolah.SekolahResponse;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 
 public class SekolahListPresenter extends BasePresenter<SekolahListView> {

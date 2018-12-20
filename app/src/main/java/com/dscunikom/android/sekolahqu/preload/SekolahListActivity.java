@@ -1,6 +1,5 @@
 package com.dscunikom.android.sekolahqu.preload;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,8 +15,8 @@ import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 import com.dscunikom.android.sekolahqu.adapter.SekolahAdapter;
-import com.dscunikom.android.sekolahqu.model.Sekolah;
-import com.dscunikom.android.sekolahqu.model.SekolahResponse;
+import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
+import com.dscunikom.android.sekolahqu.model.sekolah.SekolahResponse;
 
 import java.util.List;
 

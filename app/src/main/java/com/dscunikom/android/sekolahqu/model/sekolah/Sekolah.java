@@ -1,5 +1,5 @@
 
-package com.dscunikom.android.sekolahqu.model;
+package com.dscunikom.android.sekolahqu.model.sekolah;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;

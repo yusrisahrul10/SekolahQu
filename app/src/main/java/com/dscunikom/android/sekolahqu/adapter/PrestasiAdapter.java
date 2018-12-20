@@ -11,8 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.model.PrestasiResponse;
-import com.dscunikom.android.sekolahqu.model.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
 
 import java.util.List;
 

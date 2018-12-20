@@ -2,7 +2,7 @@ package com.dscunikom.android.sekolahqu.preload;
 
 
 import android.content.Intent;
-import com.dscunikom.android.sekolahqu.model.SekolahResponse;
+import com.dscunikom.android.sekolahqu.model.sekolah.SekolahResponse;
 
 public interface SekolahListView {
     void showLoading();

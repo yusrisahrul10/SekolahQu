@@ -1,5 +1,5 @@
 
-package com.dscunikom.android.sekolahqu.model;
+package com.dscunikom.android.sekolahqu.model.berita;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
@@ -10,16 +10,16 @@ public class SpesifikSekolah {
 
     @SerializedName("deskripsi")
     private String mDeskripsi;
-    @SerializedName("id_prestasi")
-    private String mIdPrestasi;
+    @SerializedName("id_berita")
+    private String mIdBerita;
     @SerializedName("id_sekolah")
     private String mIdSekolah;
     @SerializedName("image")
     private String mImage;
-    @SerializedName("nama_prestasi")
-    private String mNamaPrestasi;
-    @SerializedName("tanggal_didapat")
-    private String mTanggalDidapat;
+    @SerializedName("nama_berita")
+    private String mNamaBerita;
+    @SerializedName("tanggal_berita")
+    private String mTanggalBerita;
 
     public String getDeskripsi() {
         return mDeskripsi;
@@ -29,12 +29,12 @@ public class SpesifikSekolah {
         mDeskripsi = deskripsi;
     }
 
-    public String getIdPrestasi() {
-        return mIdPrestasi;
+    public String getIdBerita() {
+        return mIdBerita;
     }
 
-    public void setIdPrestasi(String idPrestasi) {
-        mIdPrestasi = idPrestasi;
+    public void setIdBerita(String idBerita) {
+        mIdBerita = idBerita;
     }
 
     public String getIdSekolah() {
@@ -53,20 +53,20 @@ public class SpesifikSekolah {
         mImage = image;
     }
 
-    public String getNamaPrestasi() {
-        return mNamaPrestasi;
+    public String getNamaBerita() {
+        return mNamaBerita;
     }
 
-    public void setNamaPrestasi(String namaPrestasi) {
-        mNamaPrestasi = namaPrestasi;
+    public void setNamaBerita(String namaBerita) {
+        mNamaBerita = namaBerita;
     }
 
-    public String getTanggalDidapat() {
-        return mTanggalDidapat;
+    public String getTanggalBerita() {
+        return mTanggalBerita;
     }
 
-    public void setTanggalDidapat(String tanggalDidapat) {
-        mTanggalDidapat = tanggalDidapat;
+    public void setTanggalBerita(String tanggalBerita) {
+        mTanggalBerita = tanggalBerita;
     }
 
 }

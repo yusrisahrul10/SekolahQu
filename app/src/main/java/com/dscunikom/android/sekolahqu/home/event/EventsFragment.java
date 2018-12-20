@@ -6,32 +6,79 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.bumptech.glide.Glide;
+import com.dscunikom.android.sekolahqu.adapter.AcaraAdapter;
+import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
 import com.dscunikom.android.sekolahqu.detail.DetailAcaraActivity;
 import com.dscunikom.android.sekolahqu.R;
+import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
+import com.dscunikom.android.sekolahqu.model.acara.SpesifikSekolah;
 
-public class EventsFragment extends Fragment {
+import java.util.List;
 
-    CardView cvEvents;
+public class EventsFragment extends MvpFragment<AcaraPresenter> implements AcaraView {
+    RecyclerView recyclerView;
+    private List<SpesifikSekolah> mList;
+    ImageView imgAcaraNews;
+    TextView tvAcaraNews;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_events, container, false);
-
-        cvEvents = rootView.findViewById(R.id.cv_events);
-        cvEvents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DetailAcaraActivity.class);
-                startActivity(intent);
-            }
-        });
+        presenter = createPresenter();
+        recyclerView = rootView.findViewById(R.id.rv_events);
+        tvAcaraNews = rootView.findViewById(R.id.text_fragment_acara);
+        imgAcaraNews = rootView.findViewById(R.id.image_fragment_acara);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+//        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        presenter.getDataAcara("22");
         return rootView;
 
     }
 
+    private RecyclerView.OnItemTouchListener selectItemOnRecyclerView() {
+        return null;
+    }
 
+
+    @Override
+    protected AcaraPresenter createPresenter() {
+        return new AcaraPresenter(this);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showListAcara(AcaraResponse model) {
+        this.mList = model.getSpesifikSekolah();
+        this.mList.remove(mList.get(0));
+        recyclerView.setAdapter(new AcaraAdapter(mList,R.layout.item_content,this.getActivity()));
+        Glide.with(this.getActivity())
+                .load("http://sekolahqu.dscunikom.com/uploads/acara/"+model.getmFirstData().get(0).getImage())
+                .into(imgAcaraNews);
+        tvAcaraNews.setText(model.getmFirstData().get(0).getNamaAcara());
+    }
+
+    @Override
+    public void showListAcaraFailed(String message) {
+
+    }
 }

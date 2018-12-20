@@ -9,9 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.model.Sekolah;
+import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 
 import java.util.List;
 
