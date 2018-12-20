@@ -3,6 +3,7 @@ package com.dscunikom.android.sekolahqu.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +36,21 @@ public class PrestasiAdapter extends  RecyclerView.Adapter<PrestasiAdapter.Prest
 
     @Override
     public void onBindViewHolder(@NonNull PrestasiAdapter.PrestasiViewHolder prestasiViewHolder, int i) {
-        Glide.with(context)
-                .load("http://sekolahqu.dscunikom.com/uploads/prestasi/"+list.get(i).getImage())
-                .into(prestasiViewHolder.imageView);
-        prestasiViewHolder.tvJudul.setText(list.get(i).getNamaPrestasi());
-        prestasiViewHolder.tvDeskripsi.setText(list.get(i).getDeskripsi());
-        prestasiViewHolder.tvTanggal.setText(list.get(i).getTanggalDidapat());
+        Log.e("Log", "List size : "+list.size() + " i : "+i);
+//        list.remove();
+//        if(list.size() != i){
+//            for(i = 1; i< list.size(); i++){
+                Glide.with(context)
+                    .load("http://sekolahqu.dscunikom.com/uploads/prestasi/"+list.get(i).getImage())
+                    .into(prestasiViewHolder.imageView);
+            prestasiViewHolder.tvJudul.setText(list.get(i).getNamaPrestasi());
+            prestasiViewHolder.tvDeskripsi.setText(list.get(i).getDeskripsi());
+            prestasiViewHolder.tvTanggal.setText(list.get(i).getTanggalDidapat());
+//                  }
+
+//        }
+
+
     }
 
     @Override

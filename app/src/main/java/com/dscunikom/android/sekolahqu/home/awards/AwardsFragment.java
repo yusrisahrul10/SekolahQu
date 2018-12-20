@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import butterknife.BindView;
 import com.dscunikom.android.sekolahqu.adapter.PrestasiAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
@@ -29,9 +31,15 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
 //    @BindView(R.id.rv_awards)
     RecyclerView recyclerView;
     private List<SpesifikSekolah> mList;
-    CardView cvAwards;
+    private List<SpesifikSekolah> mListFirst;
+
     SessionManager sessionManager;
     String id;
+    @BindView(R.id.image_fragment_prestasi)
+    ImageView imgAwardsNew;
+
+//    @BindView(R.id.text_fragment_prestasi)
+    TextView tvAwardsNew;
 
     @Override
     protected PrestasiPresenter createPresenter() {
@@ -42,7 +50,7 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_awards, container, false);
-
+        tvAwardsNew = rootView.findViewById(R.id.text_fragment_prestasi);
         //init presenter disini , entah kenapa variable presenter selalu null
         presenter = createPresenter();
         //jadi harus di panggil terus menerus bapukkkk
@@ -51,21 +59,22 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 //        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        cvAwards = rootView.findViewById(R.id.cv_awards);
-        cvAwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DetailPrestasiActivity.class);
-                startActivity(intent);
-            }
-        });
+//        cvAwards = rootView.findViewById(R.id.cv_awards);
+//        cvAwards.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), DetailPrestasiActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
         sessionManager = new SessionManager(this.getActivity());
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
         id = "22";
-
-        presenter.getData(id);
-        Log.e("Message", "Message Prestasi : "+String.valueOf(presenter));
+        presenter.getData("22");
+//        Log.e("Message", "Message Prestasi : "+String.valueOf(presenter));
+//        tvAwardsNew.setText("Helsan");
 
         return rootView;
     }
@@ -89,8 +98,15 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
     @Override
     public void showListPrestasi(PrestasiResponse model) {
         this.mList = model.getSpesifikSekolah();
+        this.mList.remove(mList.get(0));
+//        this.mListFirst = model.getFirstData();
+//        this.mList.set(mList)
         recyclerView.setAdapter(new PrestasiAdapter(mList,R.layout.item_content,this.getActivity()));
-        Log.e("Message", "Message Prestasi : "+String.valueOf(model.getJumlahData()));
+//        recyclerView.setVisibility(View.INVISIBLE);
+//        this.mList.add(mList.get(0));
+//       this.mListFirst.addAll(model.getFirstData());
+        tvAwardsNew.setText(model.getFirstData().get(0).getNamaPrestasi());
+        Log.e("Message", "Message Prestasi Index 0: "+String.valueOf(model.getFirstData().get(0).getNamaPrestasi()));
 
     }
 
