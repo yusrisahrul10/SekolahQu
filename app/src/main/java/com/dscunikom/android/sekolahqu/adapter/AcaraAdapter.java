@@ -10,16 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.model.acara.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 
 import java.util.List;
 
 public class AcaraAdapter extends RecyclerView.Adapter<AcaraAdapter.AcaraViewHolder> {
-    private List<SpesifikSekolah> mListAcara;
+    private List<AcaraModel> mListAcara;
     private int rowLayout;
     Context context;
 
-    public AcaraAdapter(List<SpesifikSekolah> mListAcara, int rowLayout, Context context) {
+    public AcaraAdapter(List<AcaraModel> mListAcara, int rowLayout, Context context) {
         this.mListAcara = mListAcara;
         this.rowLayout = rowLayout;
         this.context = context;

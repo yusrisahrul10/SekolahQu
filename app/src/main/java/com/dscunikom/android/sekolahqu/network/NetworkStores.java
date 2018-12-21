@@ -1,6 +1,8 @@
 package com.dscunikom.android.sekolahqu.network;
 
 import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
+import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
+import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
@@ -27,9 +29,14 @@ public interface NetworkStores {
     @GET("berita")
     Observable<BeritaResponse> getListBerita(@Query("id_sekolah") String id_sekolah);
 
+    @GET("berita")
+    Observable<BeritaModel> getDetailBerita(@Query("id_berita") String id_berita);
+
     @GET("acara")
     Observable<AcaraResponse> getListAcara(@Query("id_sekolah") String id_sekolah);
 
+    @GET("acara")
+    Observable<AcaraModel> getDetailAcara(@Query("id_acara") String id_acara);
 
 
 }

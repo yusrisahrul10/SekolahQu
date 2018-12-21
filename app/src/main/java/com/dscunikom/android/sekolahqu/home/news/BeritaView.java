@@ -1,5 +1,6 @@
 package com.dscunikom.android.sekolahqu.home.news;
 
+import android.content.Intent;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
 
 public interface BeritaView {
@@ -7,4 +8,5 @@ public interface BeritaView {
     void hideLoading();
     void showListBerita(BeritaResponse model);
     void showListBeritaFailed(String message);
+    void moveToActivity(Intent intent);
 }

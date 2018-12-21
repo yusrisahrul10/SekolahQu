@@ -19,9 +19,9 @@
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
-        <activity android:name=".detail.DetailBeritaActivity">
+        <activity android:name=".detail.berita.DetailBeritaActivity">
         </activity>
-        <activity android:name=".detail.DetailAcaraActivity">
+        <activity android:name=".detail.acara.DetailAcaraActivity">
         </activity>
         <activity android:name=".detail.prestasi.DetailPrestasiActivity">
         </activity>

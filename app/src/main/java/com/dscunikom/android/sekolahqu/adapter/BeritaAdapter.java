@@ -10,16 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.model.berita.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
 
 import java.util.List;
 
 public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaViewHolder> {
-    private List<SpesifikSekolah> mListBerita;
+    private List<BeritaModel> mListBerita;
     private int rowLayout;
     Context context;
 
-    public BeritaAdapter(List<SpesifikSekolah> mListBerita, int rowLayout, Context context) {
+    public BeritaAdapter(List<BeritaModel> mListBerita, int rowLayout, Context context) {
         this.mListBerita = mListBerita;
         this.rowLayout = rowLayout;
         this.context = context;

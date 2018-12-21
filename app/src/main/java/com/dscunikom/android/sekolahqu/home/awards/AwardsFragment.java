@@ -80,7 +80,7 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
             @Override
             public void onItemClick(View view, int position) {
                 presenter.getIdToPrestasi(mList.get(position), activity);
-                sessionManager.createIdSekolah(mList.get(position).getIdSekolah());
+
             }
 
             @Override

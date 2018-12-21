@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,15 +15,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.adapter.BeritaAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
-import com.dscunikom.android.sekolahqu.detail.DetailBeritaActivity;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
-import com.dscunikom.android.sekolahqu.model.berita.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
+import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 
 import java.util.List;
 
 public class NewsFragment extends MvpFragment<BeritaPresenter> implements BeritaView {
-    private List<SpesifikSekolah> mList;
+    private List<BeritaModel> mList;
     TextView tvBeritaNews;
     ImageView imgBeritaNews;
     RecyclerView recyclerView;
@@ -38,7 +36,7 @@ public class NewsFragment extends MvpFragment<BeritaPresenter> implements Berita
         presenter = createPresenter();
         recyclerView = rootView.findViewById(R.id.rv_berita);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-//        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
+        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         presenter.getDataBerita("22");
@@ -46,8 +44,19 @@ public class NewsFragment extends MvpFragment<BeritaPresenter> implements Berita
 
     }
 
-    private RecyclerView.OnItemTouchListener selectItemOnRecyclerView() {
-        return null;
+    private RecyclerItemClickListener selectItemOnRecyclerView() {
+        return new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                presenter.getIdBerita(mList.get(position), activity);
+
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                presenter.getIdBerita(mList.get(position), activity);
+            }
+        });
     }
 
 
@@ -81,5 +90,10 @@ public class NewsFragment extends MvpFragment<BeritaPresenter> implements Berita
     @Override
     public void showListBeritaFailed(String message) {
 
+    }
+
+    @Override
+    public void moveToActivity(Intent intent) {
+        startActivity(intent);
     }
 }

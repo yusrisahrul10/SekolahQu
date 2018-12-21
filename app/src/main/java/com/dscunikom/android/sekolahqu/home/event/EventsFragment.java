@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,16 +15,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.adapter.AcaraAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
-import com.dscunikom.android.sekolahqu.detail.DetailAcaraActivity;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
-import com.dscunikom.android.sekolahqu.model.acara.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
+import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 
 import java.util.List;
 
 public class EventsFragment extends MvpFragment<AcaraPresenter> implements AcaraView {
     RecyclerView recyclerView;
-    private List<SpesifikSekolah> mList;
+    private List<AcaraModel> mList;
     ImageView imgAcaraNews;
     TextView tvAcaraNews;
 
@@ -39,15 +37,26 @@ public class EventsFragment extends MvpFragment<AcaraPresenter> implements Acara
         tvAcaraNews = rootView.findViewById(R.id.text_fragment_acara);
         imgAcaraNews = rootView.findViewById(R.id.image_fragment_acara);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-//        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
+        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         presenter.getDataAcara("22");
         return rootView;
 
     }
 
-    private RecyclerView.OnItemTouchListener selectItemOnRecyclerView() {
-        return null;
+    private RecyclerItemClickListener selectItemOnRecyclerView() {
+        return new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                presenter.getIdAcara(mList.get(position), activity);
+
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                presenter.getIdAcara(mList.get(position), activity);
+            }
+        });
     }
 
 
@@ -80,5 +89,10 @@ public class EventsFragment extends MvpFragment<AcaraPresenter> implements Acara
     @Override
     public void showListAcaraFailed(String message) {
 
+    }
+
+    @Override
+    public void moveToActivity(Intent intent) {
+        startActivity(intent);
     }
 }
