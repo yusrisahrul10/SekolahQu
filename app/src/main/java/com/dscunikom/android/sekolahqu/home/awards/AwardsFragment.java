@@ -1,5 +1,6 @@
 package com.dscunikom.android.sekolahqu.home.awards;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
+import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +56,7 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
 
         recyclerView = rootView.findViewById(R.id.rv_awards);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-//        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
+        recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 //        cvAwards = rootView.findViewById(R.id.cv_awards);
 //        cvAwards.setOnClickListener(new View.OnClickListener() {
@@ -73,9 +75,21 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
         return rootView;
     }
 
-    private RecyclerView.OnItemTouchListener selectItemOnRecyclerView() {
-        return null;
+    private RecyclerItemClickListener selectItemOnRecyclerView() {
+        return new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                presenter.getIdToPrestasi(mList.get(position), activity);
+                sessionManager.createIdSekolah(mList.get(position).getIdSekolah());
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                presenter.getIdToPrestasi(mList.get(position), activity);
+            }
+        });
     }
+
 
 
 
@@ -106,5 +120,10 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
     @Override
     public void showListPrestasiFailed(String message) {
 
+    }
+
+    @Override
+    public void moveToActivity(Intent intent) {
+        startActivity(intent);
     }
 }

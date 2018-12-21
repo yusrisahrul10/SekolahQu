@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".detail.DetailAcaraActivity">
         </activity>
-        <activity android:name=".detail.DetailPrestasiActivity">
+        <activity android:name=".detail.prestasi.DetailPrestasiActivity">
         </activity>
         <activity android:name=".home.sekolah.visimisi.VisiMisiActivity">
         </activity>
