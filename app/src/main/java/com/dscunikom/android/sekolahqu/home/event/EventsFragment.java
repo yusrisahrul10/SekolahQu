@@ -18,8 +18,11 @@ import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
+import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class EventsFragment extends MvpFragment<AcaraPresenter> implements AcaraView {
@@ -27,7 +30,7 @@ public class EventsFragment extends MvpFragment<AcaraPresenter> implements Acara
     private List<AcaraModel> mList;
     ImageView imgAcaraNews;
     TextView tvAcaraNews;
-
+    SessionManager sessionManager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +42,11 @@ public class EventsFragment extends MvpFragment<AcaraPresenter> implements Acara
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        presenter.getDataAcara("22");
+        sessionManager = new SessionManager(this.getActivity());
+        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
+        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
+//        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
+        presenter.getDataAcara(id_sekolah);
         return rootView;
 
     }

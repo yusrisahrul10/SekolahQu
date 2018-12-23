@@ -33,6 +33,7 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
         progressBar = findViewById(R.id.progress_detail_prestasi);
         id = getIntent().getStringExtra("id_prestasi");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         presenter.getDetailPrestasi(id);
     }
 

@@ -18,8 +18,11 @@ import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
+import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class NewsFragment extends MvpFragment<BeritaPresenter> implements BeritaView {
@@ -27,6 +30,7 @@ public class NewsFragment extends MvpFragment<BeritaPresenter> implements Berita
     TextView tvBeritaNews;
     ImageView imgBeritaNews;
     RecyclerView recyclerView;
+    SessionManager sessionManager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,8 +42,11 @@ public class NewsFragment extends MvpFragment<BeritaPresenter> implements Berita
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        presenter.getDataBerita("22");
+        sessionManager = new SessionManager(this.getActivity());
+        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
+        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
+//        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
+        presenter.getDataBerita(id_sekolah);
         return rootView;
 
     }

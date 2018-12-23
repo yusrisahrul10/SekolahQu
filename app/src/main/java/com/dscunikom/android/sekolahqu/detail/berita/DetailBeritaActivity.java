@@ -9,11 +9,16 @@ import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
+import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
 
 public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> implements DetailBeritaView {
     String id_berita;
     TextView tvJudul,tvIsi;
     ImageView imgDetail;
+    SessionManager sessionManager;
     @Override
     protected DetailBeritaPresenter createPresenter() {
         return new DetailBeritaPresenter(this);
@@ -29,6 +34,13 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
         id_berita = getIntent().getStringExtra("id_berita");
         presenter.getDetailBerita(id_berita);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sessionManager = new SessionManager(this);
+        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
+        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
+//        if(sessionManager.creatSession()){
+//            FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
+//        }
     }
 
     @Override

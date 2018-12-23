@@ -22,6 +22,7 @@ import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +72,8 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
         id = "22";
-        presenter.getDataPrestasi("22");
+//        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
+        presenter.getDataPrestasi(id_sekolah);
         return rootView;
     }
 

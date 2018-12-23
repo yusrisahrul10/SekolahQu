@@ -9,11 +9,16 @@ import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
+import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
 
 public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> implements DetailAcaraView {
     String id_acara;
     TextView tvJudul,tvIsi;
     ImageView imgDetailAcara;
+    SessionManager sessionManager;
     @Override
     protected DetailAcaraPresenter createPresenter() {
         return new DetailAcaraPresenter(this);
@@ -29,6 +34,10 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
         id_acara = getIntent().getStringExtra("id_acara");
         presenter.getDetailAcara(id_acara);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        sessionManager = new SessionManager(this);
+        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
+        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH_NOTIF);
+        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
     }
 
     @Override

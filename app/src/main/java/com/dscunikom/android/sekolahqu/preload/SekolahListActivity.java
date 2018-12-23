@@ -18,6 +18,7 @@ import com.dscunikom.android.sekolahqu.adapter.SekolahAdapter;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.model.sekolah.SekolahResponse;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class SekolahListActivity extends MvpActivity<SekolahListPresenter> implements SekolahListView {
@@ -42,6 +43,7 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
         presenter.loadData();
     }
 
@@ -49,8 +51,17 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
         return new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                presenter.getSekolahToNotif(list.get(position), activity);
+                HashMap<String , String> sekolah = sessionManager.getSekolahPref();
+                String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH_NOTIF);
+                if(sessionManager.getNotif() == false || id_sekolah == null ){
+                    presenter.getSekolahToNotif(list.get(position), activity);
+
+
+                }else{
+                    presenter.getSekolahToHome(list.get(position),activity);
+                }
                 sessionManager.createIdSekolah(list.get(position).getIdSekolah());
+
                 Log.e("Message", "Message: "+ list.get(position).getNamaSekolah());
             }
 

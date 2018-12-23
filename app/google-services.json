@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "619233754728",
+    "firebase_url": "https://sekolahqu-2387d.firebaseio.com",
+    "project_id": "sekolahqu-2387d",
+    "storage_bucket": "sekolahqu-2387d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619233754728:android:e8615cf3e0aa71f0",
+        "android_client_info": {
+          "package_name": "com.dscunikom.android.sekolahqu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619233754728-1l183fr266lqkvvd3qr118psqidedcto.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dscunikom.android.sekolahqu",
+            "certificate_hash": "d8c889596f87f479e5e71393d5dc3b0023c0ed7b"
+          }
+        },
+        {
+          "client_id": "619233754728-35hcnric4tobaq9ferftoqkkul268749.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABQc1_xWI3K8Ko-bv12OXU2lfLeP_eXvc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619233754728-35hcnric4tobaq9ferftoqkkul268749.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
