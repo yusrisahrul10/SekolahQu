@@ -24,6 +24,8 @@ public interface NetworkStores {
     @GET("prestasi")
     Observable<PrestasiResponse> getListPrestasi(@Query("id_sekolah") String id_sekolah);
 
+
+    
     @GET("prestasi")
     Observable<SpesifikSekolah> getDetailPrestasi(@Query("id_prestasi") String id_prestasi);
 
