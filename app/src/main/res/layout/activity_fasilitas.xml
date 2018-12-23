@@ -4,67 +4,16 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".home.sekolah.FasilitasActivity">
+        android:layout_height="match_parent"
+        tools:context=".home.sekolah.fasilitas.FasilitasActivity">
 
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <FrameLayout
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_fasilitas"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp">
-
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:id="@+id/ll_fasilitas">
-                    <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                    >
-                        <ImageView
-                                android:id="@+id/image_fasilitas"
-                                android:layout_width="match_parent"
-                                android:layout_height="200dp"
-                                android:src="@drawable/fasilitas_kantin"
-                                android:scaleType="centerCrop"
-                                android:layout_margin="1dp"
-                        />
-
-                        <TextView
-                                android:id="@+id/text_fasilitas"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center_horizontal|bottom"
-                                android:layout_margin="1dp"
-                                android:layout_marginTop="213dp"
-                                android:padding="8dp"
-                                android:background="#AA000000"
-                                android:paddingLeft="10dp"
-                                android:text="Kantin"
-                                android:textColor="#ffffffff"
-                                android:textSize="18sp" />
-                    </FrameLayout>
-                </LinearLayout>
-
-                <!--<android.support.v7.widget.RecyclerView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--app:layout_constraintEnd_toEndOf="parent"-->
-                        <!--app:layout_constraintStart_toStartOf="parent"-->
-                        <!--tools:layout_editor_absoluteY="0dp"-->
-                <!--&gt;-->
-
-                <!--</android.support.v7.widget.RecyclerView>-->
-            </FrameLayout>
-        </LinearLayout>
-    </ScrollView>
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_ekskul_fasilitas">
+            </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

@@ -75,9 +75,9 @@
         </activity>
         <activity android:name=".home.sekolah.visimisi.VisiMisiActivity">
         </activity>
-        <activity android:name=".home.sekolah.FasilitasActivity">
+        <activity android:name=".home.sekolah.fasilitas.FasilitasActivity">
         </activity>
-        <activity android:name=".home.sekolah.EkskulActivity">
+        <activity android:name=".home.sekolah.ekskul.EkskulActivity">
         </activity>
         <activity android:name=".home.sekolah.KalenderActivity">
         </activity>
@@ -94,6 +94,8 @@
         <activity android:name=".preload.NotifActivity">
         </activity>
         <activity android:name=".base.ui.BaseActivity">
+        </activity>
+        <activity android:name=".detail.fasilitas.DetailFasilitasActivity">
         </activity>
     </application>
 
