@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.dscunikom.android.sekolahqu.*;
+import com.dscunikom.android.sekolahqu.home.sekolah.ekskul.EkskulActivity;
+import com.dscunikom.android.sekolahqu.home.sekolah.fasilitas.FasilitasActivity;
 import com.dscunikom.android.sekolahqu.home.sekolah.visimisi.VisiMisiActivity;
 
 /**
