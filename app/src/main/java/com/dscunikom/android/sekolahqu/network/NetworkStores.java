@@ -7,7 +7,7 @@ import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.model.sekolah.SekolahResponse;
 import retrofit2.http.GET;
@@ -25,7 +25,7 @@ public interface NetworkStores {
     Observable<PrestasiResponse> getListPrestasi(@Query("id_sekolah") String id_sekolah);
     
     @GET("prestasi")
-    Observable<SpesifikSekolah> getDetailPrestasi(@Query("id_prestasi") String id_prestasi);
+    Observable<Prestasi> getDetailPrestasi(@Query("id_prestasi") String id_prestasi);
 
 
     @GET("berita")

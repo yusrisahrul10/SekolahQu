@@ -6,7 +6,7 @@ import android.util.Log;
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
 import com.dscunikom.android.sekolahqu.detail.prestasi.DetailPrestasiActivity;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 
 public class PrestasiPresenter extends BasePresenter<PrestasiView> {
@@ -34,7 +34,7 @@ public class PrestasiPresenter extends BasePresenter<PrestasiView> {
            }
        });
     }
-    void getIdToPrestasi(SpesifikSekolah prestasi, Activity activity) {
+    void getIdToPrestasi(Prestasi prestasi, Activity activity) {
         Intent intent = new Intent(activity, DetailPrestasiActivity.class);
         intent.putExtra("id_prestasi", prestasi.getIdPrestasi());
         view.moveToActivity(intent);

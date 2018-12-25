@@ -1,6 +1,5 @@
 package com.dscunikom.android.sekolahqu.detail.prestasi;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 
 public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter> implements DetailPrestasiView {
 
@@ -60,7 +59,7 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
     }
 
     @Override
-    public void showDetailPrestasi(SpesifikSekolah model) {
+    public void showDetailPrestasi(Prestasi model) {
         tvIsi.setText(model.getDeskripsi());
         tvJudul.setText(model.getNamaPrestasi());
         Glide.with(getApplicationContext())
