@@ -29,4 +29,23 @@ public class DetailAcaraPresenter extends BasePresenter<DetailAcaraView> {
             }
         });
     }
+
+    void addFavorite(String id_acara) {
+        addSubscribe(apiStores.getDetailAcara(id_acara), new NetworkCallback<AcaraModel>() {
+            @Override
+            public void onSuccess(AcaraModel model) {
+                view.addFavoriteAcara(model);
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        });
+    }
 }

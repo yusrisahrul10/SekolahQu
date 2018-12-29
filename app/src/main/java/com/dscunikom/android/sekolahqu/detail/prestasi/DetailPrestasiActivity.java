@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
+import com.dscunikom.android.sekolahqu.database.PrestasiHelper;
 import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
 
 public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter> implements DetailPrestasiView {
@@ -18,6 +19,11 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
     ImageView imgDetail;
     TextView tvJudul , tvIsi;
     ProgressBar progressBar;
+    ImageView ivFavorite;
+
+    boolean exists;
+    boolean checked = false;
+
     @Override
     protected DetailPrestasiPresenter createPresenter() {
         return new DetailPrestasiPresenter(this);
@@ -30,11 +36,13 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
         imgDetail = findViewById(R.id.imageDetail);
         tvJudul = findViewById(R.id.txtJudul);
         tvIsi = findViewById(R.id.txtIsiPrestasi);
+        ivFavorite = findViewById(R.id.ib_favorite_prestasi);
         progressBar = findViewById(R.id.progress_detail_prestasi);
         id = getIntent().getStringExtra("id_prestasi");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter.getDetailPrestasi(id);
+        presenter.addFavorite(id);
     }
 
     @Override
@@ -66,6 +74,39 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
         Glide.with(getApplicationContext())
                 .load("http://sekolahqu.dscunikom.com/uploads/prestasi/"+model.getImage())
                 .into(imgDetail);
+    }
+
+    @Override
+    public void addFavoritePrestasi(SpesifikSekolah model) {
+        PrestasiHelper prestasiHelper = new PrestasiHelper(getApplicationContext());
+        prestasiHelper.open();
+        exists = prestasiHelper.checkIsPrestasiAlreadyFavorited(model.getIdPrestasi());
+        if (exists) {
+            ivFavorite.setImageResource(R.drawable.ic_favorite_black);
+        } else {
+            ivFavorite.setImageResource(R.drawable.ic_favorite);
+        }
+
+        ivFavorite.setOnClickListener(view -> {
+            if (!exists && !checked){
+                exists = true;
+                checked = true;
+                ivFavorite.setImageResource(R.drawable.ic_favorite_black);
+                prestasiHelper.beginTransaction();
+                prestasiHelper.insertPrestasi(model);
+                prestasiHelper.setTransactionSuccess();
+                prestasiHelper.endTransaction();
+            } else if (checked){
+                checked = false;
+                exists = false;
+                ivFavorite.setImageResource(R.drawable.ic_favorite);
+                prestasiHelper.deletePrestasi(model.getIdPrestasi());
+            } else {
+                exists = false;
+                ivFavorite.setImageResource(R.drawable.ic_favorite);
+                prestasiHelper.deletePrestasi(model.getIdPrestasi());
+            }
+        });
     }
 
     @Override

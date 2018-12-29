@@ -43,6 +43,12 @@
         <item>@drawable/fasilitas</item>
     </array>
 
+    <string-array name="item_array">
+        <item>Berita</item>
+        <item>Acara</item>
+        <item>Prestasi</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

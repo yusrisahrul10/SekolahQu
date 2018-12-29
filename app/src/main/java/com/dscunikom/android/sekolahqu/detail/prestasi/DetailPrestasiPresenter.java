@@ -28,4 +28,23 @@ public class DetailPrestasiPresenter extends BasePresenter<DetailPrestasiView> {
             }
         });
     }
+
+    void addFavorite(String id_prestasi) {
+        addSubscribe(apiStores.getDetailPrestasi(id_prestasi), new NetworkCallback<SpesifikSekolah>() {
+            @Override
+            public void onSuccess(SpesifikSekolah model) {
+                view.addFavoritePrestasi(model);
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        });
+    }
 }

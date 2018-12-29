@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
 @SuppressWarnings("unused")
 public class SpesifikSekolah {
 
+    private int id;
+
     @SerializedName("deskripsi")
     private String mDeskripsi;
     @SerializedName("id_prestasi")
@@ -20,6 +22,14 @@ public class SpesifikSekolah {
     private String mNamaPrestasi;
     @SerializedName("tanggal_didapat")
     private String mTanggalDidapat;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getDeskripsi() {
         return mDeskripsi;
