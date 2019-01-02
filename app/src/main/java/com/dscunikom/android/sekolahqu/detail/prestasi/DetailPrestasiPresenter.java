@@ -1,7 +1,7 @@
 package com.dscunikom.android.sekolahqu.detail.prestasi;
 
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 
 public class DetailPrestasiPresenter extends BasePresenter<DetailPrestasiView> {
@@ -11,9 +11,9 @@ public class DetailPrestasiPresenter extends BasePresenter<DetailPrestasiView> {
 
     void getDetailPrestasi(String id_prestasi){
         view.showLoading();
-        addSubscribe(apiStores.getDetailPrestasi(id_prestasi), new NetworkCallback<SpesifikSekolah>() {
+        addSubscribe(apiStores.getDetailPrestasi(id_prestasi), new NetworkCallback<Prestasi>() {
             @Override
-            public void onSuccess(SpesifikSekolah model) {
+            public void onSuccess(Prestasi model) {
                 view.showDetailPrestasi(model);
             }
 

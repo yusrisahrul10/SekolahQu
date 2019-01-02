@@ -13,16 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.BindView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.adapter.PrestasiAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +28,7 @@ import java.util.List;
 public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements PrestasiView {
 
     RecyclerView recyclerView;
-    private List<SpesifikSekolah> mList;
+    private List<Prestasi> mList;
 
     SessionManager sessionManager;
     String id;
@@ -82,7 +80,6 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
             @Override
             public void onItemClick(View view, int position) {
                 presenter.getIdToPrestasi(mList.get(position), activity);
-
             }
 
             @Override

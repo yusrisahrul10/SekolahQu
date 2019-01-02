@@ -8,7 +8,7 @@ import com.dscunikom.android.sekolahqu.favorite.FavoriteFragment
 import com.dscunikom.android.sekolahqu.home.HomeFragment
 import com.dscunikom.android.sekolahqu.R
 import com.dscunikom.android.sekolahqu.preload.SekolahListActivity
-import com.dscunikom.android.sekolahqu.search.SearchFragment
+import com.dscunikom.android.sekolahqu.search.SearchItemFragment
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 .beginTransaction()
                 .replace(
                     R.id.frame_layout,
-                    SearchFragment(), SearchFragment::class.java.simpleName)
+                    SearchItemFragment(), SearchItemFragment::class.java.simpleName)
                 .commit()
         }
     }

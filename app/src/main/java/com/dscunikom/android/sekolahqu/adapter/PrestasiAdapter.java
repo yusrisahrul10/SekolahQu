@@ -11,16 +11,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 
 import java.util.List;
 
 public class PrestasiAdapter extends  RecyclerView.Adapter<PrestasiAdapter.PrestasiViewHolder> {
-    private List<SpesifikSekolah> list;
+    private List<Prestasi> list;
     private int rowLayout;
     private Context context;
 
-    public PrestasiAdapter(List<SpesifikSekolah> list, int rowLayout, Context context) {
+    public PrestasiAdapter(List<Prestasi> list, int rowLayout, Context context) {
         this.list = list;
         this.rowLayout = rowLayout;
         this.context = context;
