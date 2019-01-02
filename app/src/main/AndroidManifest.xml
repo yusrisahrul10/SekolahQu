@@ -80,7 +80,7 @@
         </activity>
         <activity android:name=".home.sekolah.ekskul.EkskulActivity">
         </activity>
-        <activity android:name=".home.sekolah.KalenderActivity">
+        <activity android:name=".home.sekolah.kalender.KalenderActivity">
         </activity>
         <activity android:name=".preload.PreloadActivity">
             <intent-filter>

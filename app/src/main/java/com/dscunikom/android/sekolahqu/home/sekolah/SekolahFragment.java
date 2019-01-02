@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.dscunikom.android.sekolahqu.*;
 import com.dscunikom.android.sekolahqu.home.sekolah.ekskul.EkskulActivity;
 import com.dscunikom.android.sekolahqu.home.sekolah.fasilitas.FasilitasActivity;
+import com.dscunikom.android.sekolahqu.home.sekolah.kalender.KalenderActivity;
 import com.dscunikom.android.sekolahqu.home.sekolah.visimisi.VisiMisiActivity;
 
 /**

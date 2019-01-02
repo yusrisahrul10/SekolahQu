@@ -1,23 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".home.sekolah.KalenderActivity"
-        android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            tools:context=".home.sekolah.kalender.KalenderActivity">
+
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
         <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
                 android:layout_marginBottom="5dp"
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
@@ -25,64 +24,31 @@
                 android:textColor="@color/cardview_light_background"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongJan"
+        />
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongJan"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
 
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/januari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
-
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/januari"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
-            <!---->
-        <!--</android.support.v7.widget.RecyclerView>-->
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView3"
@@ -93,67 +59,34 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Februari"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongFeb"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/februari"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
-            <!---->
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongFeb"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/februari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView4"
@@ -164,66 +97,34 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Maret"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongMar"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/maret"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongMar"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/maret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView5"
@@ -234,67 +135,34 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="April"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongApr"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/april"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongApr"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/april"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
+        </android.support.v7.widget.RecyclerView>
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
         <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
@@ -304,67 +172,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Mei"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongMei"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/mei"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
-            <!---->
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongMei"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/mei"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView7"
@@ -375,67 +209,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Juni"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongJun"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/juni"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongJun"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/juni"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView8"
@@ -446,67 +246,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Juli"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongJul"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/juli"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongJul"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/juli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView9"
@@ -517,67 +283,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Agustus"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongAgus"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/agustus"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongAgus"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/agustus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView10"
@@ -588,67 +320,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="September"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongSep"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/september"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongSep"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/september"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView11"
@@ -659,67 +357,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Oktober"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongOkt"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/oktober"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongOkt"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/oktober"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView12"
@@ -730,67 +394,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="November"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongNov"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/november"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongNov"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/november"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
                 android:id="@+id/textView13"
@@ -801,67 +431,33 @@
                 android:background="#ff7043"
                 android:paddingLeft="19dp"
                 android:text="Desember"
-                android:textColor="#fff3f3f3"
+                android:textColor="@color/vpi__background_holo_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+        <ImageView
+                android:layout_width="290dp"
+                android:layout_height="200dp"
+                android:src="@drawable/datakosong"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imgDataKosongDec"
+        />
 
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/desember"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="200dp"-->
-                <!--tools:listitem="@layout/list_item_kalender">-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DataKosongDec"
+                android:text="@string/datakosong"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+        />
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/desember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_item_kalender">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-        >
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
-
-                    <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                        <TextView
-                                android:id="@+id/text_tanggal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:text="15"
-                                android:textColor="#ff7043"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-                    </android.support.v7.widget.CardView>
-
-                    <TextView
-                            android:id="@+id/text_ket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/text_tanggal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Star Platinum : The World!"
-                            android:textColor="#ff000000"
-                            android:textSize="18sp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

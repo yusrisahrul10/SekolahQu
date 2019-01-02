@@ -8,6 +8,7 @@ import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
+import com.dscunikom.android.sekolahqu.model.kalender.KalenderResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
@@ -50,6 +51,9 @@ public interface NetworkStores {
 
     @GET("ekskul")
     Observable<EkskulResponse> getEkskulSekolah(@Query("id_sekolah") String id_sekolah);
+
+    @GET("kalender/akademik")
+    Observable<KalenderResponse> getKalenderAkademik(@Query("id_sekolah") String id_sekolah);
     @GET("ekskul")
     Observable<Ekskul> getDetailEkskul(@Query("id_ekskul") String id_ekskul);
 }
