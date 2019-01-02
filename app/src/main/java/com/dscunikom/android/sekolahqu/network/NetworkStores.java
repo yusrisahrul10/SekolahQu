@@ -1,5 +1,6 @@
 package com.dscunikom.android.sekolahqu.network;
 
+import com.dscunikom.android.sekolahqu.model.ekskul.Ekskul;
 import com.dscunikom.android.sekolahqu.model.ekskul.EkskulResponse;
 import com.dscunikom.android.sekolahqu.model.fasilitas.DetailFasilitas.GambarResponse;
 import com.dscunikom.android.sekolahqu.model.fasilitas.FasilitasResponse;
@@ -49,6 +50,6 @@ public interface NetworkStores {
 
     @GET("ekskul")
     Observable<EkskulResponse> getEkskulSekolah(@Query("id_sekolah") String id_sekolah);
-
-
+    @GET("ekskul")
+    Observable<Ekskul> getDetailEkskul(@Query("id_ekskul") String id_ekskul);
 }
