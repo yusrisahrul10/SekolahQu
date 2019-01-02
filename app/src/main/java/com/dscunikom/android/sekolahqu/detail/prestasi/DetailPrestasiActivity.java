@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
 import com.dscunikom.android.sekolahqu.database.PrestasiHelper;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 
 public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter> implements DetailPrestasiView {
@@ -77,7 +77,7 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
     }
 
     @Override
-    public void addFavoritePrestasi(SpesifikSekolah model) {
+    public void addFavoritePrestasi(Prestasi model) {
         PrestasiHelper prestasiHelper = new PrestasiHelper(getApplicationContext());
         prestasiHelper.open();
         exists = prestasiHelper.checkIsPrestasiAlreadyFavorited(model.getIdPrestasi());

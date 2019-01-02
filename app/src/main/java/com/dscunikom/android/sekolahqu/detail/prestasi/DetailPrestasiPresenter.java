@@ -30,9 +30,9 @@ public class DetailPrestasiPresenter extends BasePresenter<DetailPrestasiView> {
     }
 
     void addFavorite(String id_prestasi) {
-        addSubscribe(apiStores.getDetailPrestasi(id_prestasi), new NetworkCallback<SpesifikSekolah>() {
+        addSubscribe(apiStores.getDetailPrestasi(id_prestasi), new NetworkCallback<Prestasi>() {
             @Override
-            public void onSuccess(SpesifikSekolah model) {
+            public void onSuccess(Prestasi model) {
                 view.addFavoritePrestasi(model);
             }
 

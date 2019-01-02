@@ -25,7 +25,7 @@ import com.dscunikom.android.sekolahqu.database.BeritaHelper;
 import com.dscunikom.android.sekolahqu.database.PrestasiHelper;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 
@@ -44,7 +44,7 @@ public class FavoriteFragment extends MvpFragment<FavoritePresenter> implements 
     RecyclerView rvFavPrestasi;
     ArrayList<BeritaModel> favoriteBerita = new ArrayList<>();
     ArrayList<AcaraModel> favoriteAcara = new ArrayList<>();
-    ArrayList<SpesifikSekolah> favoritePrestasi = new ArrayList<>();
+    ArrayList<Prestasi> favoritePrestasi = new ArrayList<>();
     BeritaHelper beritaHelper;
     AcaraHelper acaraHelper;
     PrestasiHelper prestasiHelper;

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 
 import java.util.ArrayList;
 
@@ -34,15 +34,15 @@ public class PrestasiHelper {
         dataBaseHelper.close();
     }
 
-    public ArrayList<SpesifikSekolah> queryPrestasi(String id_sekolah) {
-        ArrayList<SpesifikSekolah> arrayList = new ArrayList<>();
+    public ArrayList<Prestasi> queryPrestasi(String id_sekolah) {
+        ArrayList<Prestasi> arrayList = new ArrayList<>();
         String query = " SELECT * FROM " + TABLE_PRESTASI + " WHERE " +ID_SEKOLAH + " = '"+id_sekolah+"'";
         Cursor cursor = database.rawQuery(query, null);
         cursor.moveToFirst();
-        SpesifikSekolah spesifikSekolah;
+        Prestasi spesifikSekolah;
         if (cursor.getCount() > 0) {
             do {
-                spesifikSekolah = new SpesifikSekolah();
+                spesifikSekolah = new Prestasi();
                 spesifikSekolah.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 spesifikSekolah.setDeskripsi(cursor.getString(cursor.getColumnIndexOrThrow(DESKRIPSI)));
                 spesifikSekolah.setIdPrestasi(cursor.getString(cursor.getColumnIndexOrThrow(ID_PRESTASI)));
@@ -71,7 +71,7 @@ public class PrestasiHelper {
         database.endTransaction();
     }
 
-    public long insertPrestasi(SpesifikSekolah spesifikSekolah) {
+    public long insertPrestasi(Prestasi spesifikSekolah) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(DESKRIPSI, spesifikSekolah.getDeskripsi());
         initialValues.put(ID_PRESTASI, spesifikSekolah.getIdPrestasi());

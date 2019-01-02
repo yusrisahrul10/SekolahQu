@@ -8,7 +8,7 @@ import com.dscunikom.android.sekolahqu.detail.berita.DetailBeritaActivity;
 import com.dscunikom.android.sekolahqu.detail.prestasi.DetailPrestasiActivity;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
-import com.dscunikom.android.sekolahqu.model.prestasi.SpesifikSekolah;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 
 public class FavoritePresenter extends BasePresenter<FavoriteView> {
 
@@ -28,7 +28,7 @@ public class FavoritePresenter extends BasePresenter<FavoriteView> {
         view.moveToActivity(intent);
     }
 
-    void getIdToPrestasi(SpesifikSekolah prestasi, Activity activity) {
+    void getIdToPrestasi(Prestasi prestasi, Activity activity) {
         Intent intent = new Intent(activity, DetailPrestasiActivity.class);
         intent.putExtra("id_prestasi", prestasi.getIdPrestasi());
         view.moveToActivity(intent);
