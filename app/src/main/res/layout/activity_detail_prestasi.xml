@@ -45,6 +45,14 @@
                     android:textStyle="bold"
                     android:textColor="@android:color/black"/>
 
+            <ImageView android:layout_width="35dp"
+                       android:layout_height="30dp"
+                       android:id="@+id/ib_favorite_prestasi"
+                       tools:src="@drawable/ic_favorite_black"
+                       android:scaleType="fitXY"
+                       android:background="@null"
+                       android:layout_gravity="end"/>
+
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

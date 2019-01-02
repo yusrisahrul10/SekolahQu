@@ -5,6 +5,7 @@ import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 public interface DetailPrestasiView {
     void showLoading();
     void hideLoading();
-    void showDetailPrestasi(Prestasi model);
+    void showDetailPrestasi(SpesifikSekolah model);
+    void addFavoritePrestasi(SpesifikSekolah model);
     void showDetatailFailed(String message);
 }
