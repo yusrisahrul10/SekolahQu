@@ -56,7 +56,6 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
                 if(sessionManager.getNotif() == false || id_sekolah == null ){
                     presenter.getSekolahToNotif(list.get(position), activity);
 
-
                 }else{
                     presenter.getSekolahToHome(list.get(position),activity);
                 }

@@ -4,11 +4,14 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import com.dscunikom.android.sekolahqu.favorite.FavoriteFragment
 import com.dscunikom.android.sekolahqu.home.HomeFragment
 import com.dscunikom.android.sekolahqu.R
 import com.dscunikom.android.sekolahqu.preload.SekolahListActivity
 import com.dscunikom.android.sekolahqu.search.SearchItemFragment
+import com.dscunikom.android.sekolahqu.setting.SwitchActivity
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
@@ -85,5 +88,18 @@ class MainActivity : AppCompatActivity() {
         goToMainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Will clear out your activity history stack till now
         startActivity(goToMainActivity)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.item_switch) {
+            val intent = Intent(applicationContext, SwitchActivity::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
