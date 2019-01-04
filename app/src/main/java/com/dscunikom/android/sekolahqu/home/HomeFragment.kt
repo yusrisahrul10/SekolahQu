@@ -11,7 +11,7 @@ import com.dscunikom.android.sekolahqu.adapter.ViewPagerAdapter
 import com.dscunikom.android.sekolahqu.home.awards.AwardsFragment
 import com.dscunikom.android.sekolahqu.home.event.EventsFragment
 import com.dscunikom.android.sekolahqu.home.news.NewsFragment
-import com.dscunikom.android.sekolahqu.home.sekolah.SekolahFragment
+import com.dscunikom.android.sekolahqu.home.sekolah.sekolah.SekolahFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {

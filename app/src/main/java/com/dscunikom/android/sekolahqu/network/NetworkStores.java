@@ -9,6 +9,7 @@ import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
 import com.dscunikom.android.sekolahqu.model.kalender.KalenderResponse;
+import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiLimit;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
@@ -56,4 +57,7 @@ public interface NetworkStores {
     Observable<KalenderResponse> getKalenderAkademik(@Query("id_sekolah") String id_sekolah);
     @GET("ekskul")
     Observable<Ekskul> getDetailEkskul(@Query("id_ekskul") String id_ekskul);
+
+    @GET("prestasi/limit")
+    Observable<PrestasiLimit> getPrestasiLimit(@Query("id_sekolah") String id_sekolah);
 }

@@ -31,7 +31,6 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
     private List<Prestasi> mList;
 
     SessionManager sessionManager;
-    String id;
 //    @BindView(R.id.image_fragment_prestasi)
     ImageView imgAwardsNew;
 
@@ -69,7 +68,6 @@ public class AwardsFragment extends MvpFragment<PrestasiPresenter> implements Pr
         sessionManager = new SessionManager(this.getActivity());
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
-        id = "22";
 //        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
         presenter.getDataPrestasi(id_sekolah);
         return rootView;
