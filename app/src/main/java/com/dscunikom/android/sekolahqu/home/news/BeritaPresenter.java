@@ -18,6 +18,7 @@ public class BeritaPresenter extends BasePresenter<BeritaView> {
             @Override
             public void onSuccess(BeritaResponse model) {
                 view.showListBerita(model);
+                view.hideLoading();
             }
 
             @Override
