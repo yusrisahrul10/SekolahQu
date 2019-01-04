@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu.preload;
+package com.dscunikom.android.sekolahqu.preload.sekolahlist;
 
 
 import android.content.Intent;

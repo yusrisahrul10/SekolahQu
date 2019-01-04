@@ -53,6 +53,22 @@
                     android:layout_below="@id/ll_first_acara"
                     android:layout_above="@id/bottom_navigation">
 
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_kosong_acara"
+                        android:layout_centerInParent="true"
+                        android:text="Tidak Ada Data"
+                        android:textStyle="bold"
+                        android:drawableTop="@drawable/empty"
+                />
+
+                <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progress_bar_acara"
+                        android:layout_centerInParent="true"/>
+
 
                 <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_events"

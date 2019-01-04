@@ -1,13 +1,12 @@
 package com.dscunikom.android.sekolahqu.detail.berita;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
@@ -20,10 +19,12 @@ import java.util.HashMap;
 
 public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> implements DetailBeritaView {
     String id_berita;
-    TextView tvJudul,tvIsi;
+    TextView tvJudul,tvIsi,tvDataKosong;
     ImageView imgDetail;
     SessionManager sessionManager;
     ImageView ibFavorite;
+    ProgressBar progressBar;
+    SwipeRefreshLayout swipeRefresh;
 
     boolean exists;
     boolean checked = false;
@@ -41,9 +42,15 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
         tvIsi = findViewById(R.id.txtIsiBerita);
         imgDetail = findViewById(R.id.imageDetailBerita);
         ibFavorite = findViewById(R.id.ib_favorite_berita);
+        tvDataKosong = findViewById(R.id.tv_kosong_detail_berita);
+        progressBar = findViewById(R.id.progress_bar_detail_berita);
+        swipeRefresh = findViewById(R.id.swipe_detail_berita);
+
+
         id_berita = getIntent().getStringExtra("id_berita");
         presenter.getDetailBerita(id_berita);
         presenter.addFavorite(id_berita);
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDetailBerita(id_berita));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -70,16 +77,27 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        tvIsi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.GONE);
+        imgDetail.setVisibility(View.GONE);
+        ibFavorite.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
+        tvIsi.setVisibility(View.VISIBLE);
+        tvJudul.setVisibility(View.VISIBLE);
+        imgDetail.setVisibility(View.VISIBLE);
+        ibFavorite.setVisibility(View.VISIBLE);
+        tvDataKosong.setVisibility(View.GONE);
     }
 
     @Override
     public void showDetailBerita(BeritaModel model) {
+        swipeRefresh.setRefreshing(false);
         tvJudul.setText(model.getNamaBerita());
         tvIsi.setText(model.getDeskripsi());
         Glide.with(getApplicationContext())
@@ -131,7 +149,15 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
 
 
     @Override
-    public void showDetatailFailed(String message) {
-
+    public void showDetailBeritaFailed(String message) {
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+        tvIsi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.GONE);
+        imgDetail.setVisibility(View.GONE);
+        ibFavorite.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.VISIBLE);
     }
 }

@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.adapter.AcaraAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
@@ -29,9 +31,10 @@ public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraV
     RecyclerView recyclerView;
     private List<AcaraModel> mList;
     ImageView imgAcaraNews;
-    TextView tvAcaraNews;
+    TextView tvAcaraNews, tvDataKosong;
     SessionManager sessionManager;
     SwipeRefreshLayout swipeRefresh;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -42,6 +45,8 @@ public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraV
         tvAcaraNews = rootView.findViewById(R.id.text_fragment_acara);
         imgAcaraNews = rootView.findViewById(R.id.image_fragment_acara);
         swipeRefresh = rootView.findViewById(R.id.swipe_acara);
+        tvDataKosong = rootView.findViewById(R.id.tv_kosong_acara);
+        progressBar = rootView.findViewById(R.id.progress_bar_acara);
 
         return rootView;
 
@@ -58,12 +63,7 @@ public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraV
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
 //        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
         presenter.getDataAcara(id_sekolah);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.getDataAcara(id_sekolah);
-            }
-        });
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDataAcara(id_sekolah));
     }
 
     private RecyclerItemClickListener selectItemOnRecyclerView() {
@@ -93,30 +93,46 @@ public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraV
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.GONE);
+        tvAcaraNews.setVisibility(View.INVISIBLE);
+        imgAcaraNews.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        tvDataKosong.setVisibility(View.GONE);
+        tvAcaraNews.setVisibility(View.VISIBLE);
+        imgAcaraNews.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showListAcara(AcaraResponse model) {
         swipeRefresh.setRefreshing(false);
         this.mList = model.getSpesifikSekolah();
-        this.mList.remove(mList.get(0));
-        recyclerView.setAdapter(new AcaraAdapter(mList,R.layout.item_content,this.getActivity()));
-        Glide.with(this.getActivity())
-                .load("http://sekolahqu.dscunikom.com/uploads/acara/"+model.getmFirstData().get(0).getImage())
-                .into(imgAcaraNews);
-        tvAcaraNews.setText(model.getmFirstData().get(0).getNamaAcara());
-        imgAcaraNews.setOnClickListener(v -> clickFirstAcara(model));
+            this.mList.remove(mList.get(0));
+            recyclerView.setAdapter(new AcaraAdapter(mList,R.layout.item_content,this.getActivity()));
+            Glide.with(this.getActivity())
+                    .load("http://sekolahqu.dscunikom.com/uploads/acara/"+model.getmFirstData().get(0).getImage())
+                    .into(imgAcaraNews);
+            tvAcaraNews.setText(model.getmFirstData().get(0).getNamaAcara());
+            imgAcaraNews.setOnClickListener(v -> clickFirstAcara(model));
+
+
     }
 
     @Override
     public void showListAcaraFailed(String message) {
-
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.VISIBLE);
+        tvAcaraNews.setVisibility(View.INVISIBLE);
+        imgAcaraNews.setVisibility(View.INVISIBLE);
     }
 
     @Override

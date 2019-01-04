@@ -90,7 +90,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".preload.SekolahListActivity">
+        <activity android:name=".preload.sekolahlist.SekolahListActivity">
         </activity>
         <activity android:name=".preload.NotifActivity">
         </activity>

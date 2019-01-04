@@ -20,12 +20,12 @@ public class PrestasiPresenter extends BasePresenter<PrestasiView> {
            @Override
            public void onSuccess(PrestasiResponse model) {
                view.showListPrestasi(model);
-               Log.e("Helsan ","Testing "+String.valueOf(model.getJumlahData()));
+               view.hideLoading();
            }
 
            @Override
            public void onFailure(String message) {
-
+                view.showListPrestasiFailed(message);
            }
 
            @Override

@@ -15,11 +15,12 @@ public class DetailPrestasiPresenter extends BasePresenter<DetailPrestasiView> {
             @Override
             public void onSuccess(Prestasi model) {
                 view.showDetailPrestasi(model);
+                view.hideLoading();
             }
 
             @Override
             public void onFailure(String message) {
-
+                view.showDetailPrestasiFailed(message);
             }
 
             @Override

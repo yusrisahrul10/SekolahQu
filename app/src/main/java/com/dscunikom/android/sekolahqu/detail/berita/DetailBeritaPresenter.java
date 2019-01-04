@@ -1,9 +1,6 @@
 package com.dscunikom.android.sekolahqu.detail.berita;
 
-import android.app.Activity;
-import android.content.Intent;
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
-import com.dscunikom.android.sekolahqu.database.BeritaHelper;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 
@@ -17,11 +14,12 @@ public class DetailBeritaPresenter extends BasePresenter<DetailBeritaView> {
             @Override
             public void onSuccess(BeritaModel model) {
                 view.showDetailBerita(model);
+                view.hideLoading();
             }
 
             @Override
             public void onFailure(String message) {
-
+                view.showDetailBeritaFailed(message);
             }
 
             @Override

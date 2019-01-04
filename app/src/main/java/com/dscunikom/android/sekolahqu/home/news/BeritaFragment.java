@@ -61,12 +61,7 @@ public class BeritaFragment extends MvpFragment<BeritaPresenter> implements Beri
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
 //        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
         presenter.getDataBerita(id_sekolah);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.getDataBerita(id_sekolah);
-            }
-        });
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDataBerita(id_sekolah));
     }
 
     private RecyclerItemClickListener selectItemOnRecyclerView() {
@@ -117,19 +112,21 @@ public class BeritaFragment extends MvpFragment<BeritaPresenter> implements Beri
     public void showListBerita(BeritaResponse model) {
             swipeRefresh.setRefreshing(false);
             this.mList = model.getSpesifikSekolah();
-            this.mList.remove(mList.get(0));
-            tvBeritaNews.setText(model.getmFirstData().get(0).getNamaBerita());
-            Glide.with(this.getActivity())
-                    .load("http://sekolahqu.dscunikom.com/uploads/berita/"+model.getmFirstData().get(0).getImage())
-                    .into(imgBeritaNews);
 
-            recyclerView.setAdapter(new BeritaAdapter(mList,R.layout.item_content,this.getActivity()));
-            imgBeritaNews.setOnClickListener(v -> clickFirstBerita(model));
+                this.mList.remove(mList.get(0));
+                tvBeritaNews.setText(model.getmFirstData().get(0).getNamaBerita());
+                Glide.with(this.getActivity())
+                        .load("http://sekolahqu.dscunikom.com/uploads/berita/"+model.getmFirstData().get(0).getImage())
+                        .into(imgBeritaNews);
+
+                recyclerView.setAdapter(new BeritaAdapter(mList,R.layout.item_content,this.getActivity()));
+                imgBeritaNews.setOnClickListener(v -> clickFirstBerita(model));
     }
 
     @Override
     public void showListBeritaFailed(String message) {
-        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi. Silakan coba lagi";
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         progressBar.setVisibility(View.GONE);
         tvDataKosong.setVisibility(View.VISIBLE);

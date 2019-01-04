@@ -7,5 +7,5 @@ public interface DetailPrestasiView {
     void hideLoading();
     void showDetailPrestasi(Prestasi model);
     void addFavoritePrestasi(Prestasi model);
-    void showDetatailFailed(String message);
+    void showDetailPrestasiFailed(String message);
 }

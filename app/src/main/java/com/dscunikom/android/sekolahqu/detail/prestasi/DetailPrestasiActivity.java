@@ -1,11 +1,13 @@
 package com.dscunikom.android.sekolahqu.detail.prestasi;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
@@ -17,9 +19,10 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
 
     String id;
     ImageView imgDetail;
-    TextView tvJudul , tvIsi;
+    TextView tvJudul , tvIsi, tvDataKosong;
     ProgressBar progressBar;
     ImageView ivFavorite;
+    SwipeRefreshLayout swipeRefresh;
 
     boolean exists;
     boolean checked = false;
@@ -36,13 +39,17 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
         imgDetail = findViewById(R.id.imageDetail);
         tvJudul = findViewById(R.id.txtJudul);
         tvIsi = findViewById(R.id.txtIsiPrestasi);
+        tvDataKosong = findViewById(R.id.tv_kosong_detail_prestasi);
         ivFavorite = findViewById(R.id.ib_favorite_prestasi);
         progressBar = findViewById(R.id.progress_detail_prestasi);
+        swipeRefresh = findViewById(R.id.swipe_detail_prestasi);
+
         id = getIntent().getStringExtra("id_prestasi");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter.getDetailPrestasi(id);
         presenter.addFavorite(id);
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDetailPrestasi(id));
     }
 
     @Override
@@ -60,15 +67,27 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
+        tvIsi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.GONE);
+        imgDetail.setVisibility(View.GONE);
+        ivFavorite.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.GONE);
+
     }
 
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
+        tvIsi.setVisibility(View.VISIBLE);
+        tvJudul.setVisibility(View.VISIBLE);
+        imgDetail.setVisibility(View.VISIBLE);
+        ivFavorite.setVisibility(View.VISIBLE);
+        tvDataKosong.setVisibility(View.GONE);
     }
 
     @Override
     public void showDetailPrestasi(Prestasi model) {
+        swipeRefresh.setRefreshing(false);
         tvIsi.setText(model.getDeskripsi());
         tvJudul.setText(model.getNamaPrestasi());
         Glide.with(getApplicationContext())
@@ -110,7 +129,15 @@ public class DetailPrestasiActivity extends MvpActivity<DetailPrestasiPresenter>
     }
 
     @Override
-    public void showDetatailFailed(String message) {
-
+    public void showDetailPrestasiFailed(String message) {
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+        tvIsi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.GONE);
+        imgDetail.setVisibility(View.GONE);
+        ivFavorite.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.VISIBLE);
     }
 }

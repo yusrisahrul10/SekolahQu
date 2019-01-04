@@ -18,6 +18,7 @@ public class AcaraPresenter extends BasePresenter<AcaraView> {
             @Override
             public void onSuccess(AcaraResponse model) {
                 view.showListAcara(model);
+                view.hideLoading();
             }
 
             @Override

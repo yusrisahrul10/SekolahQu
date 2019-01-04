@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu.preload;
+package com.dscunikom.android.sekolahqu.preload.sekolahlist;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,7 @@ import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 import com.dscunikom.android.sekolahqu.main.MainActivity;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.model.sekolah.SekolahResponse;
+import com.dscunikom.android.sekolahqu.preload.NotifActivity;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 
 public class SekolahListPresenter extends BasePresenter<SekolahListView> {
@@ -23,6 +24,7 @@ public class SekolahListPresenter extends BasePresenter<SekolahListView> {
             @Override
             public void onSuccess(SekolahResponse model) {
                 view.showSekolahListSuccess(model);
+                view.hideLoading();
             }
 
             @Override
@@ -32,7 +34,7 @@ public class SekolahListPresenter extends BasePresenter<SekolahListView> {
 
             @Override
             public void onFinish() {
-                view.hideLoading();
+
             }
         });
     }

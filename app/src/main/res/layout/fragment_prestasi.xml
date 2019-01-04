@@ -56,11 +56,26 @@
                     android:padding="3dp"
                     android:layout_below="@id/ll_first_prestasi"
                     android:layout_above="@id/bottom_navigation">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_kosong_prestasi"
+                        android:layout_centerInParent="true"
+                        android:text="Tidak Ada Data"
+                        android:textStyle="bold"
+                        android:drawableTop="@drawable/empty"
+                />
+
+                <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progress_bar_prestasi"
+                        android:layout_centerInParent="true"/>
                 <android.support.v7.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/rv_awards"
-                        tools:listitem="@layout/item_content"
                         android:layout_marginBottom="?android:actionBarSize">
                 </android.support.v7.widget.RecyclerView>
             </RelativeLayout>

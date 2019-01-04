@@ -1,10 +1,14 @@
 package com.dscunikom.android.sekolahqu.detail.acara;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
@@ -21,6 +25,9 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
     ImageView imgDetailAcara;
     SessionManager sessionManager;
     ImageView ivFavorite;
+    ProgressBar progressBar;
+    SwipeRefreshLayout swipeRefresh;
+//    View view;
 
     boolean exists;
     boolean checked = false;
@@ -37,9 +44,15 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
         tvJudul = findViewById(R.id.txtJudulAcara);
         imgDetailAcara = findViewById(R.id.imageDetailAcara);
         ivFavorite = findViewById(R.id.ib_favorite_acara);
+        progressBar = findViewById(R.id.progress_bar_detail_acara);
+        swipeRefresh = findViewById(R.id.swipe_detail_acara);
+//        view = findViewById(R.id.view_detail_acara);
+
         id_acara = getIntent().getStringExtra("id_acara");
         presenter.getDetailAcara(id_acara);
         presenter.addFavorite(id_acara);
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDetailAcara(id_acara));
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sessionManager = new SessionManager(this);
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
@@ -61,16 +74,27 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        tvIsi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.GONE);
+        imgDetailAcara.setVisibility(View.GONE);
+        ivFavorite.setVisibility(View.GONE);
+//        view.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
+        tvIsi.setVisibility(View.VISIBLE);
+        tvJudul.setVisibility(View.VISIBLE);
+        imgDetailAcara.setVisibility(View.VISIBLE);
+        ivFavorite.setVisibility(View.VISIBLE);
+//        view.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showDetailAcara(AcaraModel model) {
+        swipeRefresh.setRefreshing(false);
         tvJudul.setText(model.getNamaAcara());
         tvIsi.setText(model.getDeskripsi());
         Glide.with(getApplicationContext())
@@ -113,6 +137,14 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
 
     @Override
     public void showDetatailFailed(String message) {
-
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+        tvIsi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.GONE);
+        imgDetailAcara.setVisibility(View.GONE);
+        ivFavorite.setVisibility(View.GONE);
+//        view.setVisibility(View.GONE);
     }
 }

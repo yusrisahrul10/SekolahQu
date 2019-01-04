@@ -16,11 +16,12 @@ public class DetailAcaraPresenter extends BasePresenter<DetailAcaraView> {
             @Override
             public void onSuccess(AcaraModel model) {
                 view.showDetailAcara(model);
+                view.hideLoading();
             }
 
             @Override
             public void onFailure(String message) {
-
+                view.showDetatailFailed(message);
             }
 
             @Override

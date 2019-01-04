@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.adapter.PrestasiAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
@@ -34,9 +36,10 @@ public class PrestasiFragment extends MvpFragment<PrestasiPresenter> implements 
     SessionManager sessionManager;
 //    @BindView(R.id.image_fragment_prestasi)
     ImageView imgAwardsNew;
-    TextView tvAwardsNew;
-
+    TextView tvAwardsNew, tvDataKosong;
+    ProgressBar progressBar;
     SwipeRefreshLayout swipeRefresh;
+
     @Override
     protected PrestasiPresenter createPresenter() {
         return new PrestasiPresenter(this);
@@ -48,12 +51,15 @@ public class PrestasiFragment extends MvpFragment<PrestasiPresenter> implements 
         View rootView =  inflater.inflate(R.layout.fragment_prestasi, container, false);
         tvAwardsNew = rootView.findViewById(R.id.text_fragment_prestasi);
         imgAwardsNew = rootView.findViewById(R.id.image_fragment_prestasi);
+        tvDataKosong = rootView.findViewById(R.id.tv_kosong_prestasi);
+        progressBar = rootView.findViewById(R.id.progress_bar_prestasi);
 
         //init presenter disini , entah kenapa variable presenter selalu null
         presenter = createPresenter();
         //jadi harus di panggil terus menerus bapukkkk
         recyclerView = rootView.findViewById(R.id.rv_awards);
         swipeRefresh = rootView.findViewById(R.id.swipe_prestasi);
+
 
         return rootView;
     }
@@ -69,12 +75,7 @@ public class PrestasiFragment extends MvpFragment<PrestasiPresenter> implements 
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
 //        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
         presenter.getDataPrestasi(id_sekolah);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.getDataPrestasi(id_sekolah);
-            }
-        });
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDataPrestasi(id_sekolah));
     }
 
     private RecyclerItemClickListener selectItemOnRecyclerView() {
@@ -98,31 +99,47 @@ public class PrestasiFragment extends MvpFragment<PrestasiPresenter> implements 
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.GONE);
+        tvAwardsNew.setVisibility(View.INVISIBLE);
+        imgAwardsNew.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            tvDataKosong.setVisibility(View.GONE);
+            tvAwardsNew.setVisibility(View.VISIBLE);
+            imgAwardsNew.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showListPrestasi(PrestasiResponse model) {
         swipeRefresh.setRefreshing(false);
         this.mList = model.getSpesifikSekolah();
-        this.mList.remove(mList.get(0));
+            Log.e("List Prestasi2", "jumlah " +mList.size());
+            this.mList.remove(mList.get(0));
+            recyclerView.setAdapter(new PrestasiAdapter(mList,R.layout.item_content,this.getActivity()));
+            Glide.with(this.getActivity())
+                    .load("http://sekolahqu.dscunikom.com/uploads/prestasi/"+model.getFirstData().get(0).getImage())
+                    .into(imgAwardsNew);
+            tvAwardsNew.setText(model.getFirstData().get(0).getNamaPrestasi());
+            imgAwardsNew.setOnClickListener(v -> clickFirstPrestasi(model));
 
-        recyclerView.setAdapter(new PrestasiAdapter(mList,R.layout.item_content,this.getActivity()));
-        Glide.with(this.getActivity())
-                .load("http://sekolahqu.dscunikom.com/uploads/prestasi/"+model.getFirstData().get(0).getImage())
-                .into(imgAwardsNew);
-        tvAwardsNew.setText(model.getFirstData().get(0).getNamaPrestasi());
-        imgAwardsNew.setOnClickListener(v -> clickFirstPrestasi(model));
+
     }
 
     @Override
     public void showListPrestasiFailed(String message) {
-
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+        tvDataKosong.setVisibility(View.VISIBLE);
+        tvAwardsNew.setVisibility(View.INVISIBLE);
+        imgAwardsNew.setVisibility(View.INVISIBLE);
     }
 
     @Override

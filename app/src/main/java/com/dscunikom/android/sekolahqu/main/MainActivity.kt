@@ -9,7 +9,7 @@ import android.view.MenuItem
 import com.dscunikom.android.sekolahqu.favorite.FavoriteFragment
 import com.dscunikom.android.sekolahqu.home.HomeFragment
 import com.dscunikom.android.sekolahqu.R
-import com.dscunikom.android.sekolahqu.preload.SekolahListActivity
+import com.dscunikom.android.sekolahqu.preload.sekolahlist.SekolahListActivity
 import com.dscunikom.android.sekolahqu.search.SearchItemFragment
 import com.dscunikom.android.sekolahqu.setting.SwitchActivity
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager
