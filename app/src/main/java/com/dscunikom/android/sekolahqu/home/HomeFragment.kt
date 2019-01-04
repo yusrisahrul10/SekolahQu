@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dscunikom.android.sekolahqu.R
 import com.dscunikom.android.sekolahqu.adapter.ViewPagerAdapter
-import com.dscunikom.android.sekolahqu.home.awards.AwardsFragment
+import com.dscunikom.android.sekolahqu.home.awards.PrestasiFragment
 import com.dscunikom.android.sekolahqu.home.event.AcaraFragment
 import com.dscunikom.android.sekolahqu.home.news.BeritaFragment
 import com.dscunikom.android.sekolahqu.home.sekolah.sekolah.SekolahFragment
@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
                     getString(R.string.sekolah) to SekolahFragment(),
                     getString(R.string.berita) to BeritaFragment(),
                     getString(R.string.acara) to AcaraFragment(),
-                    getString(R.string.prestasi) to AwardsFragment()
+                    getString(R.string.prestasi) to PrestasiFragment()
                 )
             )
             tab_layout.setupWithViewPager(view_pager)
