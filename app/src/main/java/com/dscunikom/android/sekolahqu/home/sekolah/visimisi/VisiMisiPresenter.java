@@ -18,6 +18,7 @@ public class VisiMisiPresenter extends BasePresenter<VisiMisiView> {
             @Override
             public void onSuccess(Sekolah model) {
                 view.showDetailSekolah(model);
+                view.hideLoading();
             }
 
             @Override
@@ -27,7 +28,7 @@ public class VisiMisiPresenter extends BasePresenter<VisiMisiView> {
 
             @Override
             public void onFinish() {
-                view.hideLoading();
+
             }
         });
     }

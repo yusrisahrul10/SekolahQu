@@ -16,11 +16,12 @@ public class DetailFasilitasPresenter extends BasePresenter<DetailFasilitasView>
             @Override
             public void onSuccess(GambarResponse model) {
                 view.showDetailFasilitas(model);
+                view.hideLoading();
             }
 
             @Override
             public void onFailure(String message) {
-
+                view.showDetailFasilitasFailed(message);
             }
 
             @Override

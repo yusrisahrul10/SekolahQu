@@ -23,7 +23,7 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
     String id_acara;
     TextView tvJudul,tvIsi;
     ImageView imgDetailAcara;
-    SessionManager sessionManager;
+//    SessionManager sessionManager;
     ImageView ivFavorite;
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefresh;
@@ -54,10 +54,10 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
         swipeRefresh.setOnRefreshListener(() -> presenter.getDetailAcara(id_acara));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        sessionManager = new SessionManager(this);
-        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
-        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH_NOTIF);
-        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
+//        sessionManager = new SessionManager(this);
+//        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
+//        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH_NOTIF);
+//        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
     }
 
     @Override

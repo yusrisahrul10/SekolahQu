@@ -36,7 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongJan"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -74,7 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongFeb"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -112,7 +114,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongMar"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -150,7 +153,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongApr"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -187,7 +191,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongMei"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -224,7 +229,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongJun"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -261,7 +267,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongJul"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -298,7 +305,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongAgus"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -335,7 +343,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongSep"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -372,7 +381,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongOkt"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -409,7 +419,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongNov"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />
@@ -446,7 +457,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/DataKosongDec"
-                android:text="@string/datakosong"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
                 android:textSize="30sp"
                 android:layout_gravity="center"
         />

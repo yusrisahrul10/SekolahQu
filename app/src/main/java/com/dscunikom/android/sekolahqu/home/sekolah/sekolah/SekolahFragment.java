@@ -4,12 +4,16 @@ package com.dscunikom.android.sekolahqu.home.sekolah.sekolah;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 import com.dscunikom.android.sekolahqu.*;
 import com.dscunikom.android.sekolahqu.adapter.PrestasiHomeAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
@@ -36,10 +40,10 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
     }
 
     RecyclerView rvPrestasi;
-
     private List<Prestasi> mList;
-
     SessionManager sessionManager;
+    ImageView ivPrestasi;
+    SwipeRefreshLayout swipeRefresh;
 
 
     @Override
@@ -54,6 +58,8 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
         CardView btnEkskul = rootView.findViewById(R.id.btn_ekskul);
         CardView btnKalender = rootView.findViewById(R.id.btn_kalender);
         rvPrestasi = rootView.findViewById(R.id.rv_prestasi_home);
+        ivPrestasi = rootView.findViewById(R.id.iv_prestasi_failed);
+        swipeRefresh = rootView.findViewById(R.id.swipe_sekolah_home);
 
         rvPrestasi.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.HORIZONTAL, false));
         rvPrestasi.addOnItemTouchListener(selectItemOnRecyclerView());
@@ -61,38 +67,26 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
         presenter.getImagePrestasi(id_sekolah);
+        swipeRefresh.setOnRefreshListener(() -> presenter.getImagePrestasi(id_sekolah));
 
-
-        btnVisiMisi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), VisiMisiActivity.class);
-                startActivity(intent);
-            }
+        btnVisiMisi.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), VisiMisiActivity.class);
+            startActivity(intent);
         });
 
-        btnFasilitas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FasilitasActivity.class);
-                startActivity(intent);
-            }
+        btnFasilitas.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), FasilitasActivity.class);
+            startActivity(intent);
         });
 
-        btnEkskul.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EkskulActivity.class);
-                startActivity(intent);
-            }
+        btnEkskul.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), EkskulActivity.class);
+            startActivity(intent);
         });
 
-        btnKalender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), KalenderActivity.class);
-                startActivity(intent);
-            }
+        btnKalender.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), KalenderActivity.class);
+            startActivity(intent);
         });
         return rootView;
     }
@@ -118,13 +112,22 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
 
     @Override
     public void showImagePrestasi(PrestasiLimit model) {
+        swipeRefresh.setRefreshing(false);
         this.mList = model.getResult();
         rvPrestasi.setAdapter(new PrestasiHomeAdapter(mList,R.layout.item_prestasi,this.getActivity()));
+        rvPrestasi.setVisibility(View.VISIBLE);
+        ivPrestasi.setVisibility(View.GONE);
     }
 
     @Override
     public void showImagePrestasiFailed(String message) {
-
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+//        Log.e("Image : ", "" + mList.size());
+        ivPrestasi.setImageResource(R.drawable.img_broken);
+        ivPrestasi.setVisibility(View.VISIBLE);
+        rvPrestasi.setVisibility(View.GONE);
     }
 
     @Override

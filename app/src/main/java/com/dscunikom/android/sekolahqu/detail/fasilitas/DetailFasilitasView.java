@@ -6,5 +6,5 @@ public interface DetailFasilitasView {
     void showLoading();
     void hideLoading();
     void showDetailFasilitas(GambarResponse model);
-    void showDetatailFailed(String message);
+    void showDetailFasilitasFailed(String message);
 }

@@ -46,7 +46,7 @@ public class PrestasiHomeAdapter extends RecyclerView.Adapter<PrestasiHomeAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PrestasiHomeViewHolder holder, int i) {
-        holder.tvPrestasi.setText(list.get(i).getNamaPrestasi().substring(0,12)+"...");
+        holder.tvPrestasi.setText(list.get(i).getNamaPrestasi().substring(0,8)+"...");
         Glide.with(context)
                 .load("http://sekolahqu.dscunikom.com/uploads/prestasi/"+list.get(i).getImage())
                 .into(holder.ivPrestasi);

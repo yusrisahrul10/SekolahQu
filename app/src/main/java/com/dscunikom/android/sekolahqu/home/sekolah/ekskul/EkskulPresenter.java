@@ -19,6 +19,7 @@ public class EkskulPresenter extends BasePresenter<EkskulView> {
             @Override
             public void onSuccess(EkskulResponse model) {
                 view.showListEkskul(model);
+                view.hideLoading();
             }
 
             @Override

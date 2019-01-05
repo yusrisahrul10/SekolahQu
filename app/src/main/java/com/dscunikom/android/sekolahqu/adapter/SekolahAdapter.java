@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 
@@ -28,7 +29,7 @@ public class SekolahAdapter extends RecyclerView.Adapter<SekolahAdapter.SekolahV
         public SekolahViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNamaSekolah = itemView.findViewById(R.id.tv_nama_sekolah);
-            ivLogoSekolah = itemView.findViewById(R.id.iv_logo_sekolah);
+            ivLogoSekolah = itemView.findViewById(R.id.img_logo_sekolah);
         }
     }
 
@@ -48,7 +49,7 @@ public class SekolahAdapter extends RecyclerView.Adapter<SekolahAdapter.SekolahV
     @Override
     public void onBindViewHolder(@NonNull SekolahAdapter.SekolahViewHolder holder, int position) {
         holder.tvNamaSekolah.setText(sekolah.get(position).getNamaSekolah());
-//        Glide.with(context).load(sekolah.get(position).getLogoSekolah()).into(holder.ivLogoSekolah);
+        Glide.with(context).load("http://sekolahqu.dscunikom.com/uploads/profile_sekolah/"+sekolah.get(position).getLogoSekolah()).into(holder.ivLogoSekolah);
         Log.e("Size:", "Size: "+sekolah.size());
     }
 

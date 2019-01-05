@@ -21,7 +21,7 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
     String id_berita;
     TextView tvJudul,tvIsi,tvDataKosong;
     ImageView imgDetail;
-    SessionManager sessionManager;
+//    SessionManager sessionManager;
     ImageView ibFavorite;
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefresh;
@@ -54,9 +54,9 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        sessionManager = new SessionManager(this);
-        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
-        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
+//        sessionManager = new SessionManager(this);
+//        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
+//        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
 
 //        if(sessionManager.creatSession()){
 //            FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);

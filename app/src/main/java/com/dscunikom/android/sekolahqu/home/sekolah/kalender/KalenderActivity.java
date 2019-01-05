@@ -1,11 +1,13 @@
 package com.dscunikom.android.sekolahqu.home.sekolah.kalender;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.adapter.AdapterKalender;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
@@ -96,6 +98,10 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
 
+        initData(id_sekolah);
+    }
+
+    public void initData(String id_sekolah) {
         presenter.getJanuary(id_sekolah);
         presenter.getFebuary(id_sekolah);
         presenter.getMaret(id_sekolah);
@@ -109,6 +115,8 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         presenter.getNovember(id_sekolah);
         presenter.getDesember(id_sekolah);
     }
+
+
 
     @Override
     public void showLoading() {
@@ -125,10 +133,13 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getJanuary();
         if(mList.size() == 0){
             rvJanuary.setVisibility(View.GONE);
+            tvDataKosongJan.setVisibility(View.VISIBLE);
+            imgDataKosongJan.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvJanuary.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
+            rvJanuary.setVisibility(View.VISIBLE);
             tvDataKosongJan.setVisibility(View.GONE);
             imgDataKosongJan.setVisibility(View.GONE);
         }
@@ -143,10 +154,13 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
 
         if(mList.size() == 0){
             rvFebuary.setVisibility(View.GONE);
+            tvDataKosongFeb.setVisibility(View.VISIBLE);
+            imgDataKosongFeb.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvFebuary.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
+            rvFebuary.setVisibility(View.VISIBLE);
             tvDataKosongFeb.setVisibility(View.GONE);
             imgDataKosongFeb.setVisibility(View.GONE);
         }
@@ -160,10 +174,13 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
 
         if(mList.size() == 0){
             rvMaret.setVisibility(View.GONE);
+            tvMar.setVisibility(View.VISIBLE);
+            imgMaret.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvMaret.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
+            rvMaret.setVisibility(View.VISIBLE);
             tvMar.setVisibility(View.GONE);
             imgMaret.setVisibility(View.GONE);
         }
@@ -175,9 +192,12 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getApril();
         if(mList.size() == 0){
             rvApril.setVisibility(View.GONE);
+            tvApr.setVisibility(View.VISIBLE);
+            imgApril.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvApril.setAdapter(adapterKalender);
+            rvApril.setVisibility(View.VISIBLE);
             adapterKalender.notifyDataSetChanged();
             tvApr.setVisibility(View.GONE);
             imgApril.setVisibility(View.GONE);
@@ -188,11 +208,14 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
     public void showListMei(KalenderResponse model) {
         this.mList = model.getMei();
         if(mList.size() == 0){
+            tvMei.setVisibility(View.VISIBLE);
+            imgMei.setVisibility(View.VISIBLE);
             rvMei.setVisibility(View.GONE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvMei.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
+            rvMei.setVisibility(View.VISIBLE);
             tvMei.setVisibility(View.GONE);
             imgMei.setVisibility(View.GONE);
         }
@@ -203,10 +226,14 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getJuni();
         if(mList.size() == 0){
             rvJuni.setVisibility(View.GONE);
+
+            tvJun.setVisibility(View.VISIBLE);
+            imgJun.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvJuni.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
+            rvJuni.setVisibility(View.VISIBLE);
             tvJun.setVisibility(View.GONE);
             imgJun.setVisibility(View.GONE);
         }
@@ -217,10 +244,14 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getJuli();
         if(mList.size() == 0){
             rvJuli.setVisibility(View.GONE);
+
+            tvJul.setVisibility(View.VISIBLE);
+            imgJul.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvJuli.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
+            rvJuli.setVisibility(View.VISIBLE);
             tvJul.setVisibility(View.GONE);
             imgJul.setVisibility(View.GONE);
         }
@@ -231,12 +262,17 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getAgustus();
         if(mList.size() == 0){
             rvAgustus.setVisibility(View.GONE);
+
+            tvAgus.setVisibility(View.VISIBLE);
+            imgAgus.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvAgustus.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
             tvAgus.setVisibility(View.GONE);
             imgAgus.setVisibility(View.GONE);
+
+            rvAgustus.setVisibility(View.VISIBLE);
         }
     }
 
@@ -245,11 +281,16 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getSeptember();
         if(mList.size() == 0){
             rvSeptember.setVisibility(View.GONE);
+
+            tvSep.setVisibility(View.VISIBLE);
+            imgSep.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvSeptember.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
             tvSep.setVisibility(View.GONE);
+
+            rvSeptember.setVisibility(View.VISIBLE);
             imgSep.setVisibility(View.GONE);
         }
     }
@@ -259,12 +300,17 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getOktober();
         if(mList.size() == 0){
             rvOktober.setVisibility(View.GONE);
+
+            tvOkt.setVisibility(View.VISIBLE);
+            tvOkt.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvOktober.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
             tvOkt.setVisibility(View.GONE);
             tvOkt.setVisibility(View.GONE);
+
+            rvOktober.setVisibility(View.VISIBLE);
         }
     }
 
@@ -273,11 +319,16 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
         this.mList = model.getNovember();
         if(mList.size() == 0){
             rvNopember.setVisibility(View.GONE);
+
+            tvNov.setVisibility(View.VISIBLE);
+            imgNov.setVisibility(View.VISIBLE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvNopember.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
             tvNov.setVisibility(View.GONE);
+
+            rvNopember.setVisibility(View.VISIBLE);
             imgNov.setVisibility(View.GONE);
         }
     }
@@ -286,12 +337,15 @@ public class KalenderActivity extends MvpActivity<KalenderPresenter> implements 
     public void showListDesember(KalenderResponse model) {
         this.mList = model.getMei();
         if(mList.size() == 0){
+            tvDec.setVisibility(View.VISIBLE);
+            tvDec.setVisibility(View.VISIBLE);
             rvDesember.setVisibility(View.GONE);
         }else{
             AdapterKalender adapterKalender = new AdapterKalender(mList,R.layout.list_item_kalender,getApplicationContext());
             rvDesember.setAdapter(adapterKalender);
             adapterKalender.notifyDataSetChanged();
             tvDec.setVisibility(View.GONE);
+            rvDesember.setVisibility(View.VISIBLE);
             tvDec.setVisibility(View.GONE);
         }
     }

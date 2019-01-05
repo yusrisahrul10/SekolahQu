@@ -14,11 +14,12 @@ public class DetailEkskulPresenter extends BasePresenter<DetailEkskulView> {
             @Override
             public void onSuccess(Ekskul model) {
                 view.showDetailEkskul(model);
+                view.hideLoading();
             }
 
             @Override
             public void onFailure(String message) {
-
+                view.showDetailEkskulFailed(message);
             }
 
             @Override

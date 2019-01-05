@@ -152,6 +152,7 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
     @Override
     public void showSekolahListFailed(String message) {
         swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         tvDataKosong.setVisibility(View.VISIBLE);
     }

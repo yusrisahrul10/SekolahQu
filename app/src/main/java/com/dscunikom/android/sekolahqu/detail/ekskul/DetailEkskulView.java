@@ -6,5 +6,5 @@ public interface DetailEkskulView {
     void showLoading();
     void hideLoading();
     void showDetailEkskul(Ekskul model);
-    void showDetatailFailed(String message);
+    void showDetailEkskulFailed(String message);
 }

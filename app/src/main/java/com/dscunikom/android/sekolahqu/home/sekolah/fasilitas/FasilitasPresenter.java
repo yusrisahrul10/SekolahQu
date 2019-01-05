@@ -19,6 +19,7 @@ public class FasilitasPresenter extends BasePresenter<FasilitasView> {
             @Override
             public void onSuccess(FasilitasResponse model) {
                 view.showListFasilitas(model);
+                view.hideLoading();
             }
 
             @Override
