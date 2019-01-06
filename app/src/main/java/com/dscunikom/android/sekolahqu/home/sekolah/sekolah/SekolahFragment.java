@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.*;
 import com.dscunikom.android.sekolahqu.adapter.PrestasiHomeAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
@@ -23,6 +24,7 @@ import com.dscunikom.android.sekolahqu.home.sekolah.kalender.KalenderActivity;
 import com.dscunikom.android.sekolahqu.home.sekolah.visimisi.VisiMisiActivity;
 import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiLimit;
+import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 
@@ -44,6 +46,7 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
     SessionManager sessionManager;
     ImageView ivPrestasi;
     SwipeRefreshLayout swipeRefresh;
+    ImageView ivLogoSekolah;
 
 
     @Override
@@ -60,6 +63,7 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
         rvPrestasi = rootView.findViewById(R.id.rv_prestasi_home);
         ivPrestasi = rootView.findViewById(R.id.iv_prestasi_failed);
         swipeRefresh = rootView.findViewById(R.id.swipe_sekolah_home);
+        ivLogoSekolah = rootView.findViewById(R.id.iv_logo_sekolah);
 
         rvPrestasi.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.HORIZONTAL, false));
         rvPrestasi.addOnItemTouchListener(selectItemOnRecyclerView());
@@ -67,7 +71,11 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
         presenter.getImagePrestasi(id_sekolah);
-        swipeRefresh.setOnRefreshListener(() -> presenter.getImagePrestasi(id_sekolah));
+        presenter.getLogoSekolah(id_sekolah);
+        swipeRefresh.setOnRefreshListener(() -> {
+            presenter.getImagePrestasi(id_sekolah);
+            presenter.getLogoSekolah(id_sekolah);
+        });
 
         btnVisiMisi.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), VisiMisiActivity.class);
@@ -114,9 +122,16 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
     public void showImagePrestasi(PrestasiLimit model) {
         swipeRefresh.setRefreshing(false);
         this.mList = model.getResult();
-        rvPrestasi.setAdapter(new PrestasiHomeAdapter(mList,R.layout.item_prestasi,this.getActivity()));
-        rvPrestasi.setVisibility(View.VISIBLE);
-        ivPrestasi.setVisibility(View.GONE);
+        if (mList.size() == 0) {
+            ivPrestasi.setImageResource(R.drawable.img_broken);
+            ivPrestasi.setVisibility(View.VISIBLE);
+            rvPrestasi.setVisibility(View.GONE);
+        } else {
+            rvPrestasi.setAdapter(new PrestasiHomeAdapter(mList,R.layout.item_prestasi,this.getActivity()));
+            rvPrestasi.setVisibility(View.VISIBLE);
+            ivPrestasi.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -124,10 +139,25 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
         swipeRefresh.setRefreshing(false);
         message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-//        Log.e("Image : ", "" + mList.size());
         ivPrestasi.setImageResource(R.drawable.img_broken);
         ivPrestasi.setVisibility(View.VISIBLE);
         rvPrestasi.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showImageLogoSekolah(Sekolah model) {
+        swipeRefresh.setRefreshing(false);
+        Glide.with(this.getActivity())
+                .load("http://sekolahqu.dscunikom.com/uploads/profile_sekolah/"+model.getLogoSekolah())
+                .into(ivLogoSekolah);
+    }
+
+    @Override
+    public void showImageLogoSekolahFailed(String message) {
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        ivLogoSekolah.setImageResource(R.drawable.img_broken);
     }
 
     @Override

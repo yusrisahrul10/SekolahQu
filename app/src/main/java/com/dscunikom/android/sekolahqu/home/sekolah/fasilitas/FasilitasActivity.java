@@ -79,16 +79,26 @@ public class FasilitasActivity extends MvpActivity<FasilitasPresenter> implement
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-        tvDataKosong.setVisibility(View.GONE);
+        if (list.size() == 0) {
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
+            tvDataKosong.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            tvDataKosong.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void showListFasilitas(FasilitasResponse model) {
         swipeRefresh.setRefreshing(false);
         this.list = model.getResult();
-        recyclerView.setAdapter(new FasilitasAdapter(list, R.layout.item_ekskul_fasilitas, getApplicationContext()));
+        FasilitasAdapter adapter = new FasilitasAdapter(list, R.layout.item_ekskul_fasilitas, getApplicationContext());
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
     }
 
     @Override

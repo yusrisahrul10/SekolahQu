@@ -49,12 +49,22 @@
                         android:text="Prestasi"/>
             </LinearLayout>
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_kosong_search"
+                    android:layout_centerInParent="true"
+                    android:text="Tidak Ada Data"
+                    android:textStyle="bold"
+                    android:drawableTop="@drawable/empty"
+                    android:layout_below="@id/ll_buttton"
+            />
+
             <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/rv_search_berita"
                     android:layout_below="@id/ll_buttton"
-                    tools:listitem="@layout/item_content"
                     android:layout_marginBottom="?android:actionBarSize">
             </android.support.v7.widget.RecyclerView>
             <android.support.v7.widget.RecyclerView
@@ -62,7 +72,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rv_search_acara"
                     android:layout_below="@id/ll_buttton"
-                    tools:listitem="@layout/item_content"
                     android:layout_marginBottom="?android:actionBarSize">
             </android.support.v7.widget.RecyclerView>
             <android.support.v7.widget.RecyclerView
@@ -70,7 +79,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rv_search_prestasi"
                     android:layout_below="@id/ll_buttton"
-                    tools:listitem="@layout/item_content"
                     android:layout_marginBottom="?android:actionBarSize">
             </android.support.v7.widget.RecyclerView>
         </RelativeLayout>

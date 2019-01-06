@@ -9,8 +9,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.*;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.adapter.AcaraAdapter;
 import com.dscunikom.android.sekolahqu.adapter.BeritaAdapter;
@@ -48,6 +51,8 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
     private boolean clickedAcara = false;
     private boolean clickedPrestasi = false;
 
+    TextView tvDataKosong;
+
     public SearchItemFragment() {
         // Required empty public constructor
     }
@@ -70,6 +75,8 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         rvBerita = view.findViewById(R.id.rv_search_berita);
         rvAcara = view.findViewById(R.id.rv_search_acara);
         rvPrestasi = view.findViewById(R.id.rv_search_prestasi);
+        tvDataKosong = view.findViewById(R.id.tv_kosong_search);
+        tvDataKosong.setVisibility(View.VISIBLE);
 
         rvBerita.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         rvBerita.addOnItemTouchListener(selectItemBeritaOnRecyclerView());
@@ -172,35 +179,50 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                if (clickedBerita) {
-                    searchBerita(s);
-                } else if (clickedAcara) {
-                    searchAcara(s);
-                } else if (clickedPrestasi) {
-                    searchPrestasi(s);
-                }
-
+                searchItem(s);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if (clickedBerita) {
-                    searchBerita(s);
-                } else if (clickedAcara) {
-                    searchAcara(s);
-                } else if (clickedPrestasi) {
-                    searchPrestasi(s);
-                }
+                searchItem(s);
                 return true;
             }
         });
 
-//        super.onCreateOptionsMenu(menu, inflater);
 
     }
 
-
+    private void searchItem(String query) {
+        if (clickedBerita) {
+            searchBerita(query);
+//            if (listBeritaFilter.size() == 0) {
+//                rvBerita.setVisibility(View.GONE);
+//                tvDataKosong.setVisibility(View.VISIBLE);
+//            } else {
+//                rvBerita.setVisibility(View.VISIBLE);
+//                tvDataKosong.setVisibility(View.GONE);
+//            }
+        } else if (clickedAcara) {
+            searchAcara(query);
+//            if (listAcaraFilter.size() == 0) {
+//                rvAcara.setVisibility(View.GONE);
+//                tvDataKosong.setVisibility(View.VISIBLE);
+//            } else {
+//                rvAcara.setVisibility(View.VISIBLE);
+//                tvDataKosong.setVisibility(View.GONE);
+//            }
+        } else if (clickedPrestasi) {
+            searchPrestasi(query);
+//            if (listPrestasiFilter.size() == 0) {
+//                rvPrestasi.setVisibility(View.GONE);
+//                tvDataKosong.setVisibility(View.VISIBLE);
+//            } else {
+//                rvPrestasi.setVisibility(View.VISIBLE);
+//                tvDataKosong.setVisibility(View.GONE);
+//            }
+        }
+    }
 
     @Override
     protected SearchItemPresenter createPresenter() {
@@ -225,11 +247,15 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
                 filteredList.add(s);
             }
         }
-
-        RecyclerView.Adapter fAdapter = new BeritaAdapter(filteredList, R.layout.item_content, this.getActivity());
-        if (fAdapter.getItemCount() == 0) {
-
-        }reloadViewBerita(fAdapter, filteredList);
+        if (filteredList.size() == 0) {
+            rvBerita.setVisibility(View.GONE);
+            tvDataKosong.setVisibility(View.VISIBLE);
+        } else {
+            rvBerita.setVisibility(View.VISIBLE);
+            tvDataKosong.setVisibility(View.GONE);
+            RecyclerView.Adapter fAdapter = new BeritaAdapter(filteredList, R.layout.item_content, this.getActivity());
+            reloadViewBerita(fAdapter, filteredList);
+        }
 
     }
 
@@ -240,10 +266,16 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
                 filteredList.add(s);
             }
         }
-        RecyclerView.Adapter fAdapter = new AcaraAdapter(filteredList, R.layout.item_content, this.getActivity());
-        if (fAdapter.getItemCount() == 0) {
+        if (filteredList.size() == 0) {
+            rvAcara.setVisibility(View.GONE);
+            tvDataKosong.setVisibility(View.VISIBLE);
+        } else {
+            rvAcara.setVisibility(View.VISIBLE);
+            tvDataKosong.setVisibility(View.GONE);
+            RecyclerView.Adapter fAdapter = new AcaraAdapter(filteredList, R.layout.item_content, this.getActivity());
+            reloadViewAcara(fAdapter, filteredList);
+        }
 
-        }reloadViewAcara(fAdapter, filteredList);
     }
 
     private void searchPrestasi(String keyword) {
@@ -253,10 +285,16 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
                 filteredList.add(s);
             }
         }
-        RecyclerView.Adapter fAdapter = new PrestasiAdapter(filteredList, R.layout.item_content, this.getActivity());
-        if (fAdapter.getItemCount() == 0) {
+        if (filteredList.size() == 0) {
+            rvPrestasi.setVisibility(View.GONE);
+            tvDataKosong.setVisibility(View.VISIBLE);
+        } else {
+            rvPrestasi.setVisibility(View.VISIBLE);
+            tvDataKosong.setVisibility(View.GONE);
+            RecyclerView.Adapter fAdapter = new PrestasiAdapter(filteredList, R.layout.item_content, this.getActivity());
+            reloadViewPrestasi(fAdapter, filteredList);
+        }
 
-        }reloadViewPrestasi(fAdapter, filteredList);
     }
 
     private void reloadViewPrestasi(RecyclerView.Adapter adapter, List<Prestasi> list) {
@@ -308,36 +346,68 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
     public void showListBerita(BeritaResponse model) {
         this.listBerita = model.getSpesifikSekolah();
         this.listBeritaFilter = model.getSpesifikSekolah();
-        rvBerita.setAdapter(new BeritaAdapter(listBerita, R.layout.item_content, this.getActivity()));
+        if (listBerita.size() == 0) {
+            tvDataKosong.setVisibility(View.VISIBLE);
+            rvBerita.setVisibility(View.GONE);
+        } else {
+            rvBerita.setAdapter(new BeritaAdapter(listBerita, R.layout.item_content, this.getActivity()));
+            tvDataKosong.setVisibility(View.GONE);
+            rvBerita.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
     public void showListBeritaFailed(String message) {
-
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        tvDataKosong.setVisibility(View.VISIBLE);
+        rvBerita.setVisibility(View.GONE);
     }
 
     @Override
     public void showListAcara(AcaraResponse model) {
         this.listAcara = model.getSpesifikSekolah();
         this.listAcaraFilter = model.getSpesifikSekolah();
-        rvAcara.setAdapter(new AcaraAdapter(listAcara, R.layout.item_content, this.getActivity()));
+        if (listAcara.size() == 0) {
+            tvDataKosong.setVisibility(View.VISIBLE);
+            rvAcara.setVisibility(View.GONE);
+        } else {
+            rvAcara.setAdapter(new AcaraAdapter(listAcara, R.layout.item_content, this.getActivity()));
+            tvDataKosong.setVisibility(View.GONE);
+            rvAcara.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
     public void showListAcaraFailed(String message) {
-
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        tvDataKosong.setVisibility(View.VISIBLE);
+        rvAcara.setVisibility(View.GONE);
     }
 
     @Override
     public void showListPrestasi(PrestasiResponse model) {
         this.listPrestasi = model.getSpesifikSekolah();
         this.listPrestasiFilter = model.getSpesifikSekolah();
-        rvPrestasi.setAdapter(new PrestasiAdapter(listPrestasi, R.layout.item_content,this.getActivity()));
+        if (listPrestasi.size() == 0) {
+            tvDataKosong.setVisibility(View.VISIBLE);
+            rvPrestasi.setVisibility(View.GONE);
+        } else {
+            rvPrestasi.setAdapter(new PrestasiAdapter(listPrestasi, R.layout.item_content, this.getActivity()));
+            tvDataKosong.setVisibility(View.GONE);
+            rvPrestasi.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void showListPrestasiFailed(String message) {
-
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        tvDataKosong.setVisibility(View.VISIBLE);
+        rvPrestasi.setVisibility(View.GONE);
     }
 
     @Override

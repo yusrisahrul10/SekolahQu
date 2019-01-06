@@ -77,16 +77,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="#2d3436"
                         android:textSize="15sp" />
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tv_kosong_detail_prestasi"
-                        android:layout_centerInParent="true"
-                        android:text="Tidak Ada Data"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        android:drawableTop="@drawable/empty"
-                />
                 <ProgressBar
                         android:id="@+id/progress_detail_prestasi"
                         android:layout_width="wrap_content"

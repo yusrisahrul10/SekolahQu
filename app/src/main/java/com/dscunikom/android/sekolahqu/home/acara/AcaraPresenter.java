@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu.home.event;
+package com.dscunikom.android.sekolahqu.home.acara;
 
 import android.app.Activity;
 import android.content.Intent;

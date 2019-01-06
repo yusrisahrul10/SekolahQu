@@ -1,8 +1,7 @@
-package com.dscunikom.android.sekolahqu.home.awards;
+package com.dscunikom.android.sekolahqu.home.prestasi;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
 import com.dscunikom.android.sekolahqu.detail.prestasi.DetailPrestasiActivity;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;

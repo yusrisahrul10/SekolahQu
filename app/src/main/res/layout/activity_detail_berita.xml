@@ -80,15 +80,6 @@
             </ScrollView>
 
         </LinearLayout>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_kosong_detail_berita"
-                android:layout_centerInParent="true"
-                android:text="Tidak Ada Data"
-                android:textStyle="bold"
-                android:drawableTop="@drawable/empty"
-        />
         <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

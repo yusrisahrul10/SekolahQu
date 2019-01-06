@@ -17,7 +17,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:id="@+id/iv_logo_sekolah"
-                    android:src="@drawable/banner_home"/>
+                    />
             <LinearLayout
                     android:id="@+id/ll_tentang"
                     android:layout_width="match_parent"

@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> implements DetailBeritaView {
     String id_berita;
-    TextView tvJudul,tvIsi,tvDataKosong;
+    TextView tvJudul,tvIsi;
     ImageView imgDetail;
 //    SessionManager sessionManager;
     ImageView ibFavorite;
@@ -42,7 +42,6 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
         tvIsi = findViewById(R.id.txtIsiBerita);
         imgDetail = findViewById(R.id.imageDetailBerita);
         ibFavorite = findViewById(R.id.ib_favorite_berita);
-        tvDataKosong = findViewById(R.id.tv_kosong_detail_berita);
         progressBar = findViewById(R.id.progress_bar_detail_berita);
         swipeRefresh = findViewById(R.id.swipe_detail_berita);
 
@@ -82,7 +81,6 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
         tvJudul.setVisibility(View.GONE);
         imgDetail.setVisibility(View.GONE);
         ibFavorite.setVisibility(View.GONE);
-        tvDataKosong.setVisibility(View.GONE);
     }
 
     @Override
@@ -92,7 +90,6 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
         tvJudul.setVisibility(View.VISIBLE);
         imgDetail.setVisibility(View.VISIBLE);
         ibFavorite.setVisibility(View.VISIBLE);
-        tvDataKosong.setVisibility(View.GONE);
     }
 
     @Override
@@ -155,9 +152,11 @@ public class DetailBeritaActivity extends MvpActivity<DetailBeritaPresenter> imp
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         progressBar.setVisibility(View.GONE);
         tvIsi.setVisibility(View.GONE);
-        tvJudul.setVisibility(View.GONE);
-        imgDetail.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.VISIBLE);
+        imgDetail.setVisibility(View.VISIBLE);
         ibFavorite.setVisibility(View.GONE);
-        tvDataKosong.setVisibility(View.VISIBLE);
+
+        tvJudul.setText("Tidak Ada Data");
+        imgDetail.setImageResource(R.drawable.empty);
     }
 }

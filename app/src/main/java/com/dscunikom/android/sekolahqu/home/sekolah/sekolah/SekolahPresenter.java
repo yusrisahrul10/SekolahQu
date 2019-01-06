@@ -6,6 +6,7 @@ import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
 import com.dscunikom.android.sekolahqu.detail.prestasi.DetailPrestasiActivity;
 import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiLimit;
+import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 
 public class SekolahPresenter extends BasePresenter<SekolahView> {
@@ -27,6 +28,25 @@ public class SekolahPresenter extends BasePresenter<SekolahView> {
 
             @Override
             public void onFinish() {
+            }
+        });
+    }
+
+    void getLogoSekolah(String id_sekolah) {
+        addSubscribe(apiStores.getDetailSekolah(id_sekolah), new NetworkCallback<Sekolah>() {
+            @Override
+            public void onSuccess(Sekolah model) {
+                view.showImageLogoSekolah(model);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.showImageLogoSekolahFailed(message);
+            }
+
+            @Override
+            public void onFinish() {
+
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu.home.news;
+package com.dscunikom.android.sekolahqu.home.berita;
 
 import android.content.Intent;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;

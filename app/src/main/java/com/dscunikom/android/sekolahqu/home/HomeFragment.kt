@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.dscunikom.android.sekolahqu.R
 import com.dscunikom.android.sekolahqu.adapter.ViewPagerAdapter
-import com.dscunikom.android.sekolahqu.home.awards.PrestasiFragment
-import com.dscunikom.android.sekolahqu.home.event.AcaraFragment
-import com.dscunikom.android.sekolahqu.home.news.BeritaFragment
+import com.dscunikom.android.sekolahqu.home.prestasi.PrestasiFragment
+import com.dscunikom.android.sekolahqu.home.acara.AcaraFragment
+import com.dscunikom.android.sekolahqu.home.berita.BeritaFragment
 import com.dscunikom.android.sekolahqu.home.sekolah.sekolah.SekolahFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 

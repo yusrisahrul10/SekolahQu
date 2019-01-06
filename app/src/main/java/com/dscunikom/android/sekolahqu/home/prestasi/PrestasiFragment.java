@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu.home.event;
+package com.dscunikom.android.sekolahqu.home.prestasi;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,40 +17,51 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.dscunikom.android.sekolahqu.adapter.AcaraAdapter;
+import com.dscunikom.android.sekolahqu.adapter.PrestasiAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
-import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
+import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
+import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraView {
+public class PrestasiFragment extends MvpFragment<PrestasiPresenter> implements PrestasiView {
+
     RecyclerView recyclerView;
-    private List<AcaraModel> mList;
-    ImageView imgAcaraNews;
-    TextView tvAcaraNews, tvDataKosong;
+    private List<Prestasi> mList;
+
     SessionManager sessionManager;
-    SwipeRefreshLayout swipeRefresh;
+//    @BindView(R.id.image_fragment_prestasi)
+    ImageView imgAwardsNew;
+    TextView tvAwardsNew, tvDataKosong;
     ProgressBar progressBar;
+    SwipeRefreshLayout swipeRefresh;
+
+    @Override
+    protected PrestasiPresenter createPresenter() {
+        return new PrestasiPresenter(this);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.fragment_acara, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_prestasi, container, false);
+        tvAwardsNew = rootView.findViewById(R.id.text_fragment_prestasi);
+        imgAwardsNew = rootView.findViewById(R.id.image_fragment_prestasi);
+        tvDataKosong = rootView.findViewById(R.id.tv_kosong_prestasi);
+        progressBar = rootView.findViewById(R.id.progress_bar_prestasi);
+
+        //init presenter disini , entah kenapa variable presenter selalu null
         presenter = createPresenter();
-        recyclerView = rootView.findViewById(R.id.rv_events);
-        tvAcaraNews = rootView.findViewById(R.id.text_fragment_acara);
-        imgAcaraNews = rootView.findViewById(R.id.image_fragment_acara);
-        swipeRefresh = rootView.findViewById(R.id.swipe_acara);
-        tvDataKosong = rootView.findViewById(R.id.tv_kosong_acara);
-        progressBar = rootView.findViewById(R.id.progress_bar_acara);
+        //jadi harus di panggil terus menerus bapukkkk
+        recyclerView = rootView.findViewById(R.id.rv_awards);
+        swipeRefresh = rootView.findViewById(R.id.swipe_prestasi);
+
 
         return rootView;
-
     }
 
     @Override
@@ -62,77 +74,72 @@ public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraV
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
 //        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
-        presenter.getDataAcara(id_sekolah);
-        swipeRefresh.setOnRefreshListener(() -> presenter.getDataAcara(id_sekolah));
+        presenter.getDataPrestasi(id_sekolah);
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDataPrestasi(id_sekolah));
     }
 
     private RecyclerItemClickListener selectItemOnRecyclerView() {
         return new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                presenter.getIdAcara(mList.get(position), activity);
-
+                presenter.getIdToPrestasi(mList.get(position), activity);
             }
 
             @Override
             public void onLongItemClick(View view, int position) {
-                presenter.getIdAcara(mList.get(position), activity);
+                presenter.getIdToPrestasi(mList.get(position), activity);
             }
         });
     }
 
-    private void clickFirstAcara(AcaraResponse model) {
-        presenter.getIdAcara(model.getmFirstData().get(0), activity);
+    private void clickFirstPrestasi(PrestasiResponse model){
+        presenter.getIdToPrestasi(model.getFirstData().get(0), activity);
     }
 
-
-    @Override
-    protected AcaraPresenter createPresenter() {
-        return new AcaraPresenter(this);
-    }
 
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         tvDataKosong.setVisibility(View.GONE);
-        tvAcaraNews.setVisibility(View.INVISIBLE);
-        imgAcaraNews.setVisibility(View.INVISIBLE);
+        tvAwardsNew.setVisibility(View.INVISIBLE);
+        imgAwardsNew.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-        tvDataKosong.setVisibility(View.GONE);
-        tvAcaraNews.setVisibility(View.VISIBLE);
-        imgAcaraNews.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            tvDataKosong.setVisibility(View.GONE);
+            tvAwardsNew.setVisibility(View.VISIBLE);
+            imgAwardsNew.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showListAcara(AcaraResponse model) {
+    public void showListPrestasi(PrestasiResponse model) {
         swipeRefresh.setRefreshing(false);
         this.mList = model.getSpesifikSekolah();
+            Log.e("List Prestasi2", "jumlah " +mList.size());
             this.mList.remove(mList.get(0));
-            recyclerView.setAdapter(new AcaraAdapter(mList,R.layout.item_content,this.getActivity()));
+            recyclerView.setAdapter(new PrestasiAdapter(mList,R.layout.item_content,this.getActivity()));
             Glide.with(this.getActivity())
-                    .load("http://sekolahqu.dscunikom.com/uploads/acara/"+model.getmFirstData().get(0).getImage())
-                    .into(imgAcaraNews);
-            tvAcaraNews.setText(model.getmFirstData().get(0).getNamaAcara());
-            imgAcaraNews.setOnClickListener(v -> clickFirstAcara(model));
+                    .load("http://sekolahqu.dscunikom.com/uploads/prestasi/"+model.getFirstData().get(0).getImage())
+                    .into(imgAwardsNew);
+            tvAwardsNew.setText(model.getFirstData().get(0).getNamaPrestasi());
+            imgAwardsNew.setOnClickListener(v -> clickFirstPrestasi(model));
 
 
     }
 
     @Override
-    public void showListAcaraFailed(String message) {
+    public void showListPrestasiFailed(String message) {
         swipeRefresh.setRefreshing(false);
         message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         progressBar.setVisibility(View.GONE);
         tvDataKosong.setVisibility(View.VISIBLE);
-        tvAcaraNews.setVisibility(View.INVISIBLE);
-        imgAcaraNews.setVisibility(View.INVISIBLE);
+        tvAwardsNew.setVisibility(View.INVISIBLE);
+        imgAwardsNew.setVisibility(View.INVISIBLE);
     }
 
     @Override

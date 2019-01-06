@@ -24,7 +24,7 @@ public class DetailBeritaPresenter extends BasePresenter<DetailBeritaView> {
 
             @Override
             public void onFinish() {
-                view.hideLoading();
+
             }
         });
     }

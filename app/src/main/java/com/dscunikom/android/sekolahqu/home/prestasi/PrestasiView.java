@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu.home.awards;
+package com.dscunikom.android.sekolahqu.home.prestasi;
 
 import android.content.Intent;
 import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;

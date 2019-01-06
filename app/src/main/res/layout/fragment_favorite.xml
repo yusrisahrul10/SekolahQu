@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               tools:context=".favorite.FavoriteFragment"
               android:orientation="vertical">
 
@@ -22,181 +24,65 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <LinearLayout
-                    android:id="@+id/spinner_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white">
 
-                <Spinner
-                        android:id="@+id/spinner"
+    <android.support.v4.widget.SwipeRefreshLayout android:layout_width="match_parent"
+                                                  android:layout_height="match_parent"
+    android:id="@+id/swipe_favorite">
+        <ScrollView android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <LinearLayout
+                        android:id="@+id/spinner_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        />
-            </LinearLayout>
+                        android:background="@android:color/white">
 
-            <!--<LinearLayout android:layout_width="match_parent"-->
-                          <!--android:layout_height="wrap_content"-->
-                          <!--android:id="@+id/ll_first"-->
-                          <!--android:layout_below="@id/spinner_container">-->
-                <!--<FrameLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                <!--&gt;-->
-                    <!--<ImageView-->
-                            <!--android:id="@+id/image_fragment_prestasi"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="200dp"-->
-                            <!--android:src="@drawable/banner_home"-->
-                            <!--android:scaleType="centerCrop"-->
-                            <!--android:layout_margin="1dp"-->
-                    <!--/>-->
+                    <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                    />
+                </LinearLayout>
 
-                    <!--<TextView-->
-                            <!--android:id="@+id/text_fragment_prestasi"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="40dp"-->
-                            <!--android:layout_gravity="center_horizontal|bottom"-->
-                            <!--android:layout_margin="1dp"-->
-                            <!--android:layout_marginTop="213dp"-->
-                            <!--android:padding="8dp"-->
-                            <!--android:background="#AA000000"-->
-                            <!--android:paddingLeft="10dp"-->
-                            <!--android:text="Juara Lomba Roket"-->
-                            <!--android:textColor="#ffffffff"-->
-                            <!--android:textSize="18sp" />-->
-                <!--</FrameLayout>-->
-            <!--</LinearLayout>-->
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_kosong_favorite"
+                        android:layout_centerInParent="true"
+                        android:text="Tidak Ada Data"
+                        android:textStyle="bold"
+                        android:drawableTop="@drawable/empty"
+                        android:layout_below="@id/spinner_container"
+                />
 
-            <!--<LinearLayout android:layout_width="match_parent"-->
-                          <!--android:layout_height="wrap_content"-->
-                          <!--android:layout_below="@id/ll_first"-->
-                          <!--android:orientation="vertical">-->
-                <!--<android.support.v7.widget.CardView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_gravity="center"-->
-                        <!--android:layout_marginLeft="8dp"-->
-                        <!--android:layout_marginTop="4dp"-->
-                        <!--android:layout_marginRight="8dp"-->
-                        <!--android:layout_marginBottom="4dp"-->
-                        <!--android:elevation="10dp"-->
-                        <!--android:id="@+id/cv_events">-->
+                <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rv_favorite_berita"
+                        android:layout_below="@id/spinner_container"
+                        android:layout_marginBottom="?android:actionBarSize">
+                </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rv_favorite_acara"
+                        android:layout_below="@id/spinner_container"
+                        android:layout_marginBottom="?android:actionBarSize">
+                </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rv_favorite_prestasi"
+                        android:layout_below="@id/spinner_container"
+                        android:layout_marginBottom="?android:actionBarSize">
+                </android.support.v7.widget.RecyclerView>
 
-                    <!--<RelativeLayout-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:padding="3dp">-->
+            </RelativeLayout>
+        </ScrollView>
 
-                        <!--<ImageView-->
-                                <!--android:id="@+id/img_content"-->
-                                <!--android:layout_width="100dp"-->
-                                <!--android:layout_height="113dp"-->
-                                <!--android:layout_marginLeft="4dp"-->
-                                <!--android:layout_marginTop="4dp"-->
-                                <!--android:layout_marginBottom="4dp"-->
-                                <!--android:scaleType="centerCrop"-->
-                                <!--android:src="@drawable/ekstrakulikuler"/>-->
-
-                        <!--<TextView-->
-                                <!--android:id="@+id/tv_title_content"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_marginLeft="8dp"-->
-                                <!--android:layout_marginTop="4dp"-->
-                                <!--android:layout_marginRight="8dp"-->
-                                <!--android:layout_marginBottom="4dp"-->
-                                <!--android:layout_toEndOf="@id/img_content"-->
-                                <!--android:layout_toRightOf="@id/img_content"-->
-                                <!--android:text="Judul"-->
-                                <!--android:textColor="#212121"-->
-                                <!--android:textSize="18sp"-->
-                                <!--android:textStyle="bold" />-->
-
-                        <!--<TextView-->
-                                <!--android:id="@+id/tv_date_content"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_below="@id/tv_title_content"-->
-                                <!--android:layout_marginLeft="8dp"-->
-                                <!--android:layout_marginRight="8dp"-->
-                                <!--android:layout_marginBottom="4dp"-->
-                                <!--android:layout_toEndOf="@id/img_content"-->
-                                <!--android:layout_toRightOf="@id/img_content"-->
-                                <!--android:text="Tanggal"-->
-                                <!--android:textColor="#6c6c6c" />-->
-
-                        <!--<TextView-->
-                                <!--android:id="@+id/tv_deskripsi"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_below="@id/tv_date_content"-->
-                                <!--android:layout_marginLeft="8dp"-->
-                                <!--android:layout_marginRight="8dp"-->
-                                <!--android:layout_marginBottom="4dp"-->
-                                <!--android:layout_toEndOf="@id/img_content"-->
-                                <!--android:layout_toRightOf="@id/img_content"-->
-                                <!--android:lines="2"-->
-                                <!--android:text="Deskripsinya wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"-->
-                                <!--android:textColor="#363636" />-->
-
-                        <!--<TextView-->
-                                <!--android:id="@+id/tv_readmore"-->
-                                <!--android:layout_width="match_parent"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_below="@id/tv_deskripsi"-->
-                                <!--android:layout_marginLeft="8dp"-->
-                                <!--android:layout_marginRight="8dp"-->
-                                <!--android:layout_marginBottom="4dp"-->
-                                <!--android:layout_toEndOf="@id/img_content"-->
-                                <!--android:layout_toRightOf="@id/img_content"-->
-                                <!--android:text="Baca Selengkapnya.."-->
-                                <!--android:textColor="#0645AD" />-->
-
-                    <!--</RelativeLayout>-->
-
-                <!--</android.support.v7.widget.CardView>-->
-
-                <!--<android.support.v7.widget.RecyclerView-->
-                        <!--android:id="@+id/rv_events"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:padding="6dp">-->
-
-                <!--</android.support.v7.widget.RecyclerView>-->
-
-            <!--</LinearLayout>-->
-
-            <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rv_favorite_berita"
-                    android:layout_below="@id/spinner_container"
-                    tools:listitem="@layout/item_content"
-                    android:layout_marginBottom="?android:actionBarSize">
-            </android.support.v7.widget.RecyclerView>
-            <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rv_favorite_acara"
-                    android:layout_below="@id/spinner_container"
-                    tools:listitem="@layout/item_content"
-                    android:layout_marginBottom="?android:actionBarSize">
-            </android.support.v7.widget.RecyclerView>
-            <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rv_favorite_prestasi"
-                    android:layout_below="@id/spinner_container"
-                    tools:listitem="@layout/item_content"
-                    android:layout_marginBottom="?android:actionBarSize">
-            </android.support.v7.widget.RecyclerView>
-
-        </RelativeLayout>
-    </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

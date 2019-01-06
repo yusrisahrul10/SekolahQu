@@ -4,6 +4,7 @@ package com.dscunikom.android.sekolahqu.favorite;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.adapter.AcaraAdapter;
 import com.dscunikom.android.sekolahqu.adapter.BeritaAdapter;
@@ -42,6 +44,7 @@ public class FavoriteFragment extends MvpFragment<FavoritePresenter> implements 
     RecyclerView rvFavBerita;
     RecyclerView rvFavAcara;
     RecyclerView rvFavPrestasi;
+    SwipeRefreshLayout swipeRefresh;
     ArrayList<BeritaModel> favoriteBerita = new ArrayList<>();
     ArrayList<AcaraModel> favoriteAcara = new ArrayList<>();
     ArrayList<Prestasi> favoritePrestasi = new ArrayList<>();
@@ -53,6 +56,7 @@ public class FavoriteFragment extends MvpFragment<FavoritePresenter> implements 
     AcaraAdapter acaraAdapter;
     PrestasiAdapter prestasiAdapter;
 
+    TextView tvDataKosong;
     public FavoriteFragment() {
 
     }
@@ -70,7 +74,9 @@ public class FavoriteFragment extends MvpFragment<FavoritePresenter> implements 
         rvFavBerita = rootView.findViewById(R.id.rv_favorite_berita);
         rvFavAcara = rootView.findViewById(R.id.rv_favorite_acara);
         rvFavPrestasi = rootView.findViewById(R.id.rv_favorite_prestasi);
+        swipeRefresh = rootView.findViewById(R.id.swipe_favorite);
         spinner = rootView.findViewById(R.id.spinner);
+        tvDataKosong = rootView.findViewById(R.id.tv_kosong_favorite);
 
         rvFavBerita.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         rvFavBerita.setItemAnimator(new DefaultItemAnimator());
@@ -93,37 +99,7 @@ public class FavoriteFragment extends MvpFragment<FavoritePresenter> implements 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-              if (spinner.getSelectedItem().toString().equals("Berita")) {
-                  beritaHelper = new BeritaHelper(getActivity().getApplicationContext());
-                  beritaHelper.open();
-                  favoriteBerita = beritaHelper.queryBerita(id_sekolah);
-                  beritaHelper.close();
-                  beritaAdapter = new BeritaAdapter(favoriteBerita, R.layout.item_content, getActivity());
-                  rvFavBerita.setAdapter(beritaAdapter);
-                  rvFavBerita.setVisibility(View.VISIBLE);
-                  rvFavAcara.setVisibility(View.GONE);
-                  rvFavPrestasi.setVisibility(View.GONE);
-              } else if (spinner.getSelectedItem().toString().equals("Acara")) {
-                  acaraHelper = new AcaraHelper(getActivity().getApplicationContext());
-                  acaraHelper.open();
-                  favoriteAcara = acaraHelper.queryAcara(id_sekolah);
-                  acaraHelper.close();
-                  acaraAdapter = new AcaraAdapter(favoriteAcara, R.layout.item_content, getActivity());
-                  rvFavAcara.setAdapter(acaraAdapter);
-                  rvFavBerita.setVisibility(View.GONE);
-                  rvFavPrestasi.setVisibility(View.GONE);
-                  rvFavAcara.setVisibility(View.VISIBLE);
-              } else if (spinner.getSelectedItem().toString().equals("Prestasi")) {
-                  prestasiHelper = new PrestasiHelper(getActivity().getApplicationContext());
-                  prestasiHelper.open();
-                  favoritePrestasi = prestasiHelper.queryPrestasi(id_sekolah);
-                  prestasiHelper.close();
-                  prestasiAdapter = new PrestasiAdapter(favoritePrestasi, R.layout.item_content, getActivity());
-                  rvFavPrestasi.setAdapter(prestasiAdapter);
-                  rvFavPrestasi.setVisibility(View.VISIBLE);
-                  rvFavAcara.setVisibility(View.GONE);
-                  rvFavBerita.setVisibility(View.GONE);
-              }
+                showFavorite(id_sekolah);
             }
 
             @Override
@@ -131,9 +107,71 @@ public class FavoriteFragment extends MvpFragment<FavoritePresenter> implements 
 
             }
         });
-
-
+        swipeRefresh.setOnRefreshListener(() -> showFavorite(id_sekolah));
         return rootView;
+    }
+
+    private void showFavorite(String id_sekolah) {
+        swipeRefresh.setRefreshing(false);
+        switch (spinner.getSelectedItem().toString()) {
+            case "Berita":
+                beritaHelper = new BeritaHelper(getActivity().getApplicationContext());
+                beritaHelper.open();
+                favoriteBerita = beritaHelper.queryBerita(id_sekolah);
+                if (favoriteBerita.size() == 0) {
+                    tvDataKosong.setVisibility(View.VISIBLE);
+                    rvFavBerita.setVisibility(View.GONE);
+                    rvFavAcara.setVisibility(View.GONE);
+                    rvFavPrestasi.setVisibility(View.GONE);
+                } else {
+                    beritaAdapter = new BeritaAdapter(favoriteBerita, R.layout.item_content, getActivity());
+                    rvFavBerita.setAdapter(beritaAdapter);
+                    tvDataKosong.setVisibility(View.GONE);
+                    rvFavBerita.setVisibility(View.VISIBLE);
+                    rvFavAcara.setVisibility(View.GONE);
+                    rvFavPrestasi.setVisibility(View.GONE);
+                }
+                beritaHelper.close();
+                break;
+            case "Acara":
+                acaraHelper = new AcaraHelper(getActivity().getApplicationContext());
+                acaraHelper.open();
+                favoriteAcara = acaraHelper.queryAcara(id_sekolah);
+                if (favoriteAcara.size() == 0) {
+                    tvDataKosong.setVisibility(View.VISIBLE);
+                    rvFavBerita.setVisibility(View.GONE);
+                    rvFavAcara.setVisibility(View.GONE);
+                    rvFavPrestasi.setVisibility(View.GONE);
+                } else {
+                    acaraAdapter = new AcaraAdapter(favoriteAcara, R.layout.item_content, getActivity());
+                    rvFavAcara.setAdapter(acaraAdapter);
+                    rvFavBerita.setVisibility(View.GONE);
+                    tvDataKosong.setVisibility(View.GONE);
+                    rvFavPrestasi.setVisibility(View.GONE);
+                    rvFavAcara.setVisibility(View.VISIBLE);
+                }
+                acaraHelper.close();
+                break;
+            case "Prestasi":
+                prestasiHelper = new PrestasiHelper(getActivity().getApplicationContext());
+                prestasiHelper.open();
+                favoritePrestasi = prestasiHelper.queryPrestasi(id_sekolah);
+                if (favoritePrestasi.size() == 0) {
+                    tvDataKosong.setVisibility(View.VISIBLE);
+                    rvFavBerita.setVisibility(View.GONE);
+                    rvFavAcara.setVisibility(View.GONE);
+                    rvFavPrestasi.setVisibility(View.GONE);
+                } else {
+                    prestasiAdapter = new PrestasiAdapter(favoritePrestasi, R.layout.item_content, getActivity());
+                    rvFavPrestasi.setAdapter(prestasiAdapter);
+                    rvFavPrestasi.setVisibility(View.VISIBLE);
+                    rvFavAcara.setVisibility(View.GONE);
+                    rvFavBerita.setVisibility(View.GONE);
+                    tvDataKosong.setVisibility(View.GONE);
+                }
+                prestasiHelper.close();
+                break;
+        }
     }
 
     private RecyclerItemClickListener selectBeritaOnRecyclerView() {

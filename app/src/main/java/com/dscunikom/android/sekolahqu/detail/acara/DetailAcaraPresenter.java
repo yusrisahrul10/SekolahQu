@@ -26,7 +26,7 @@ public class DetailAcaraPresenter extends BasePresenter<DetailAcaraView> {
 
             @Override
             public void onFinish() {
-                view.hideLoading();
+
             }
         });
     }

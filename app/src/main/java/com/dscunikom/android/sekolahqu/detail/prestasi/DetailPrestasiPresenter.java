@@ -25,7 +25,7 @@ public class DetailPrestasiPresenter extends BasePresenter<DetailPrestasiView> {
 
             @Override
             public void onFinish() {
-                view.hideLoading();
+
             }
         });
     }

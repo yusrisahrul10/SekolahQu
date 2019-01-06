@@ -142,9 +142,10 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         progressBar.setVisibility(View.GONE);
         tvIsi.setVisibility(View.GONE);
-        tvJudul.setVisibility(View.GONE);
-        imgDetailAcara.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.VISIBLE);
+        imgDetailAcara.setVisibility(View.VISIBLE);
         ivFavorite.setVisibility(View.GONE);
-//        view.setVisibility(View.GONE);
+        tvJudul.setText("Tidak Ada Data");
+        imgDetailAcara.setImageResource(R.drawable.empty);
     }
 }

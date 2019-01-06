@@ -1,4 +1,4 @@
-package com.dscunikom.android.sekolahqu.home.news;
+package com.dscunikom.android.sekolahqu.home.acara;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,36 +16,38 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.dscunikom.android.sekolahqu.adapter.BeritaAdapter;
+import com.dscunikom.android.sekolahqu.adapter.AcaraAdapter;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpFragment;
 import com.dscunikom.android.sekolahqu.R;
-import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
-import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
+import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
+import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class BeritaFragment extends MvpFragment<BeritaPresenter> implements BeritaView {
-    private List<BeritaModel> mList;
-    TextView tvBeritaNews, tvDataKosong;
-    ImageView imgBeritaNews;
+public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraView {
     RecyclerView recyclerView;
+    private List<AcaraModel> mList;
+    ImageView imgAcaraNews;
+    TextView tvAcaraNews, tvDataKosong;
     SessionManager sessionManager;
-    ProgressBar progressBar;
     SwipeRefreshLayout swipeRefresh;
+    ProgressBar progressBar;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.fragment_berita, container, false);
-        tvBeritaNews = rootView.findViewById(R.id.text_fragment_berita);
-        imgBeritaNews = rootView.findViewById(R.id.image_fragment_berita);
-        tvDataKosong = rootView.findViewById(R.id.tv_kosong_berita);
-        progressBar = rootView.findViewById(R.id.progress_bar_berita);
+        View rootView =  inflater.inflate(R.layout.fragment_acara, container, false);
         presenter = createPresenter();
-        recyclerView = rootView.findViewById(R.id.rv_berita);
-        swipeRefresh = rootView.findViewById(R.id.swipe_berita);
+        recyclerView = rootView.findViewById(R.id.rv_events);
+        tvAcaraNews = rootView.findViewById(R.id.text_fragment_acara);
+        imgAcaraNews = rootView.findViewById(R.id.image_fragment_acara);
+        swipeRefresh = rootView.findViewById(R.id.swipe_acara);
+        tvDataKosong = rootView.findViewById(R.id.tv_kosong_acara);
+        progressBar = rootView.findViewById(R.id.progress_bar_acara);
+
         return rootView;
 
     }
@@ -60,34 +62,33 @@ public class BeritaFragment extends MvpFragment<BeritaPresenter> implements Beri
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
 //        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
-        presenter.getDataBerita(id_sekolah);
-        swipeRefresh.setOnRefreshListener(() -> presenter.getDataBerita(id_sekolah));
+        presenter.getDataAcara(id_sekolah);
+        swipeRefresh.setOnRefreshListener(() -> presenter.getDataAcara(id_sekolah));
     }
 
     private RecyclerItemClickListener selectItemOnRecyclerView() {
         return new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                presenter.getIdBerita(mList.get(position), activity);
+                presenter.getIdAcara(mList.get(position), activity);
 
             }
 
             @Override
             public void onLongItemClick(View view, int position) {
-                presenter.getIdBerita(mList.get(position), activity);
+                presenter.getIdAcara(mList.get(position), activity);
             }
         });
     }
 
-
-
-    private void clickFirstBerita(BeritaResponse model){
-        presenter.getIdBerita(model.getmFirstData().get(0), activity);
+    private void clickFirstAcara(AcaraResponse model) {
+        presenter.getIdAcara(model.getmFirstData().get(0), activity);
     }
 
+
     @Override
-    protected BeritaPresenter createPresenter() {
-        return new BeritaPresenter(this);
+    protected AcaraPresenter createPresenter() {
+        return new AcaraPresenter(this);
     }
 
     @Override
@@ -95,8 +96,8 @@ public class BeritaFragment extends MvpFragment<BeritaPresenter> implements Beri
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         tvDataKosong.setVisibility(View.GONE);
-        tvBeritaNews.setVisibility(View.INVISIBLE);
-        imgBeritaNews.setVisibility(View.INVISIBLE);
+        tvAcaraNews.setVisibility(View.INVISIBLE);
+        imgAcaraNews.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -104,34 +105,34 @@ public class BeritaFragment extends MvpFragment<BeritaPresenter> implements Beri
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         tvDataKosong.setVisibility(View.GONE);
-        tvBeritaNews.setVisibility(View.VISIBLE);
-        imgBeritaNews.setVisibility(View.VISIBLE);
+        tvAcaraNews.setVisibility(View.VISIBLE);
+        imgAcaraNews.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showListBerita(BeritaResponse model) {
-            swipeRefresh.setRefreshing(false);
-            this.mList = model.getSpesifikSekolah();
+    public void showListAcara(AcaraResponse model) {
+        swipeRefresh.setRefreshing(false);
+        this.mList = model.getSpesifikSekolah();
+            this.mList.remove(mList.get(0));
+            recyclerView.setAdapter(new AcaraAdapter(mList,R.layout.item_content,this.getActivity()));
+            Glide.with(this.getActivity())
+                    .load("http://sekolahqu.dscunikom.com/uploads/acara/"+model.getmFirstData().get(0).getImage())
+                    .into(imgAcaraNews);
+            tvAcaraNews.setText(model.getmFirstData().get(0).getNamaAcara());
+            imgAcaraNews.setOnClickListener(v -> clickFirstAcara(model));
 
-                this.mList.remove(mList.get(0));
-                tvBeritaNews.setText(model.getmFirstData().get(0).getNamaBerita());
-                Glide.with(this.getActivity())
-                        .load("http://sekolahqu.dscunikom.com/uploads/berita/"+model.getmFirstData().get(0).getImage())
-                        .into(imgBeritaNews);
 
-                recyclerView.setAdapter(new BeritaAdapter(mList,R.layout.item_content,this.getActivity()));
-                imgBeritaNews.setOnClickListener(v -> clickFirstBerita(model));
     }
 
     @Override
-    public void showListBeritaFailed(String message) {
+    public void showListAcaraFailed(String message) {
         swipeRefresh.setRefreshing(false);
         message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         progressBar.setVisibility(View.GONE);
         tvDataKosong.setVisibility(View.VISIBLE);
-        tvBeritaNews.setVisibility(View.INVISIBLE);
-        imgBeritaNews.setVisibility(View.INVISIBLE);
+        tvAcaraNews.setVisibility(View.INVISIBLE);
+        imgAcaraNews.setVisibility(View.INVISIBLE);
     }
 
     @Override

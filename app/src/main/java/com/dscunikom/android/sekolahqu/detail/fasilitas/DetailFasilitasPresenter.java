@@ -26,7 +26,6 @@ public class DetailFasilitasPresenter extends BasePresenter<DetailFasilitasView>
 
             @Override
             public void onFinish() {
-                view.hideLoading();
             }
         });
     }
