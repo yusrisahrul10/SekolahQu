@@ -14,8 +14,9 @@ import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.model.sekolah.SekolahResponse;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
+import com.dscunikom.android.sekolahqu.model.trafic.AuthResponse;
+import retrofit2.Call;
+import retrofit2.http.*;
 import rx.Observable;
 
 public interface NetworkStores {
@@ -60,4 +61,8 @@ public interface NetworkStores {
 
     @GET("prestasi/limit")
     Observable<PrestasiLimit> getPrestasiLimit(@Query("id_sekolah") String id_sekolah);
+
+    @FormUrlEncoded
+    @POST("trafic/auth")
+    Call<AuthResponse> postRespone(@Field("android_id") String android_id);
 }
