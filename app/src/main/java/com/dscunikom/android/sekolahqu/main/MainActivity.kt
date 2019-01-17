@@ -13,13 +13,19 @@ import com.dscunikom.android.sekolahqu.preload.sekolahlist.SekolahListActivity
 import com.dscunikom.android.sekolahqu.search.SearchItemFragment
 import com.dscunikom.android.sekolahqu.setting.SwitchActivity
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
         val sessionManager = SessionManager(this)
         val sekolah = sessionManager.getSekolahPref()
         val id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH)
@@ -36,6 +42,13 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.bnv_home -> {
                     loadHomeFragment(savedInstanceState)
+                    val name = String
+                    val params = Bundle()
+                    params.putInt("ButtonID", R.id.bnv_home)
+                    params.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"btn_home")
+                    firebaseAnalytics.logEvent("tombol_home",params)
+                    firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,params)
+
                 }
                 R.id.bnv_favorite -> {
                     loadFavoriteFragment(savedInstanceState)
@@ -57,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.frame_layout,
                     HomeFragment(), HomeFragment::class.java.simpleName)
                 .commit()
+
         }
     }
 

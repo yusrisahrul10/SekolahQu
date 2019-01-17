@@ -23,6 +23,7 @@ import com.dscunikom.android.sekolahqu.model.acara.AcaraResponse;
 import com.dscunikom.android.sekolahqu.model.acara.AcaraModel;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,11 +36,14 @@ public class AcaraFragment extends MvpFragment<AcaraPresenter> implements AcaraV
     SessionManager sessionManager;
     SwipeRefreshLayout swipeRefresh;
     ProgressBar progressBar;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_acara, container, false);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics.setCurrentScreen(this.getActivity(), getActivity().getClass().getSimpleName(), getActivity().getClass().getSimpleName());
         presenter = createPresenter();
         recyclerView = rootView.findViewById(R.id.rv_events);
         tvAcaraNews = rootView.findViewById(R.id.text_fragment_acara);

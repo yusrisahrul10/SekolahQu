@@ -23,6 +23,7 @@ import com.dscunikom.android.sekolahqu.model.berita.BeritaResponse;
 import com.dscunikom.android.sekolahqu.model.berita.BeritaModel;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,10 +36,14 @@ public class BeritaFragment extends MvpFragment<BeritaPresenter> implements Beri
     SessionManager sessionManager;
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefresh;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_berita, container, false);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics.setCurrentScreen(this.getActivity(), getActivity().getClass().getSimpleName(), getActivity().getClass().getSimpleName());
         tvBeritaNews = rootView.findViewById(R.id.text_fragment_berita);
         imgBeritaNews = rootView.findViewById(R.id.image_fragment_berita);
         tvDataKosong = rootView.findViewById(R.id.tv_kosong_berita);

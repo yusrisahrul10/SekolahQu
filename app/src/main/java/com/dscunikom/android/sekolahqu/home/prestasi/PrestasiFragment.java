@@ -24,6 +24,7 @@ import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiResponse;
 import com.dscunikom.android.sekolahqu.model.prestasi.Prestasi;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +40,7 @@ public class PrestasiFragment extends MvpFragment<PrestasiPresenter> implements 
     TextView tvAwardsNew, tvDataKosong;
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefresh;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected PrestasiPresenter createPresenter() {
@@ -49,6 +51,8 @@ public class PrestasiFragment extends MvpFragment<PrestasiPresenter> implements 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_prestasi, container, false);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics.setCurrentScreen(this.getActivity(), getActivity().getClass().getSimpleName(), getActivity().getClass().getSimpleName());
         tvAwardsNew = rootView.findViewById(R.id.text_fragment_prestasi);
         imgAwardsNew = rootView.findViewById(R.id.image_fragment_prestasi);
         tvDataKosong = rootView.findViewById(R.id.tv_kosong_prestasi);

@@ -1,6 +1,7 @@
 package com.dscunikom.android.sekolahqu.home.sekolah.sekolah;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,7 @@ import com.dscunikom.android.sekolahqu.model.prestasi.PrestasiLimit;
 import com.dscunikom.android.sekolahqu.model.sekolah.Sekolah;
 import com.dscunikom.android.sekolahqu.sharedpref.SessionManager;
 import com.dscunikom.android.sekolahqu.utils.RecyclerItemClickListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,13 +49,13 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
     ImageView ivPrestasi;
     SwipeRefreshLayout swipeRefresh;
     ImageView ivLogoSekolah;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_sekolah, container, false);
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
         presenter = createPresenter();
 
         CardView btnVisiMisi = rootView.findViewById(R.id.btn_visi_misi);
@@ -64,6 +66,8 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
         ivPrestasi = rootView.findViewById(R.id.iv_prestasi_failed);
         swipeRefresh = rootView.findViewById(R.id.swipe_sekolah_home);
         ivLogoSekolah = rootView.findViewById(R.id.iv_logo_sekolah);
+
+        mFirebaseAnalytics.setCurrentScreen(this.getActivity(), getActivity().getClass().getSimpleName(), getActivity().getClass().getSimpleName());
 
         rvPrestasi.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.HORIZONTAL, false));
         rvPrestasi.addOnItemTouchListener(selectItemOnRecyclerView());
@@ -78,25 +82,63 @@ public class SekolahFragment extends MvpFragment<SekolahPresenter> implements Se
         });
 
         btnVisiMisi.setOnClickListener(view -> {
+
             Intent intent = new Intent(getActivity(), VisiMisiActivity.class);
             startActivity(intent);
+            String name = "btnVisiMisi";
+            Bundle params = new Bundle();
+            params.putString("BtnVisiMisi", name);
+            mFirebaseAnalytics.logEvent("tombol_visi_misi",params);
+            Log.e("Firebase Analytics ","Error : ");
+    //            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"btn_visi_misi");
+
+//            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,params);
         });
 
         btnFasilitas.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), FasilitasActivity.class);
             startActivity(intent);
+            String name = "btnFasilitas";
+            Bundle params = new Bundle();
+            params.putString("BtnVisiFasilitas", name);
+            mFirebaseAnalytics.logEvent("tombol_fasilitas",params);
+            Log.e("Firebase Analytics ","Error : ");
+            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"btn_fasilitas");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,params);
+
         });
 
         btnEkskul.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), EkskulActivity.class);
             startActivity(intent);
+            String name = "btnEkskul";
+            Bundle params = new Bundle();
+            params.putString("BtnVisiEkskul", name);
+            mFirebaseAnalytics.logEvent("tombol_ekskul",params);
+            Log.e("Firebase Analytics ","Error : ");
+            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"btn_ekskul");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,params);
         });
 
         btnKalender.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), KalenderActivity.class);
             startActivity(intent);
+            String name = "btnKalender";
+            Bundle params = new Bundle();
+            params.putString("BtnVisiFasilitas", name);
+            mFirebaseAnalytics.logEvent("tombol_kalender",params);
+            Log.e("Firebase Analytics ","Error : ");
+            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"btn_kalender");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,params);
         });
+
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
     }
 
     private RecyclerItemClickListener selectItemOnRecyclerView() {
