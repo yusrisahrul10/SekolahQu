@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -53,8 +54,20 @@ public class EkskulActivity extends MvpActivity<EkskulPresenter> implements Eksk
         recyclerView.addOnItemTouchListener(selectItemOnRecyclerView());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         presenter.getEkskulFasilitas(id_sekolah);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         swipeRefresh.setOnRefreshListener(() -> presenter.getEkskulFasilitas(id_sekolah));
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home : {
+                finish();
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            }
+        }
+        return true;
     }
 
     private RecyclerItemClickListener selectItemOnRecyclerView() {

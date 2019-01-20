@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -44,6 +45,19 @@ public class DetailEkskulActivity extends MvpActivity<DetailEkskulPresenter> imp
         presenter.getDetailEkskul(id_ekskul);
         Log.e("Ekskul", ""+id_ekskul);
         swipeRefresh.setOnRefreshListener(() -> presenter.getDetailEkskul(id_ekskul));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home : {
+                finish();
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            }
+        }
+        return true;
     }
 
     @Override

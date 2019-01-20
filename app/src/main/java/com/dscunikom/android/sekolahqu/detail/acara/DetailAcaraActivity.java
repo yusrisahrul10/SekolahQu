@@ -5,10 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
 import com.dscunikom.android.sekolahqu.base.mvp.MvpActivity;
@@ -48,6 +45,10 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
         swipeRefresh = findViewById(R.id.swipe_detail_acara);
 //        view = findViewById(R.id.view_detail_acara);
 
+
+
+
+
         id_acara = getIntent().getStringExtra("id_acara");
         presenter.getDetailAcara(id_acara);
         presenter.addFavorite(id_acara);
@@ -58,6 +59,7 @@ public class DetailAcaraActivity extends MvpActivity<DetailAcaraPresenter> imple
 //        HashMap<String , String> sekolah = sessionManager.getSekolahPref();
 //        String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH_NOTIF);
 //        FirebaseMessaging.getInstance().subscribeToTopic(id_sekolah);
+
     }
 
     @Override

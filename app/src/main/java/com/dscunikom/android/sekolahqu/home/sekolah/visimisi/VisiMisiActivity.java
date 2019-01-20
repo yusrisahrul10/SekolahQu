@@ -2,6 +2,7 @@ package com.dscunikom.android.sekolahqu.home.sekolah.visimisi;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -43,6 +44,19 @@ public class VisiMisiActivity extends MvpActivity<VisiMisiPresenter> implements 
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
         presenter.getData(id_sekolah);
         swipeRefresh.setOnRefreshListener(() -> presenter.getData(id_sekolah));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home : {
+                finish();
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            }
+        }
+        return true;
     }
 
     @Override
