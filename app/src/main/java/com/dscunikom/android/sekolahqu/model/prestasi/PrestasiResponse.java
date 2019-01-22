@@ -9,17 +9,17 @@ import com.google.gson.annotations.SerializedName;
 @SuppressWarnings("unused")
 public class PrestasiResponse {
     @SerializedName("first_data")
-    private List<SpesifikSekolah> firstData;
+    private List<Prestasi> firstData;
     @SerializedName("jumlah_data")
     private Long mJumlahData;
     @SerializedName("spesifik_sekolah")
-    private List<SpesifikSekolah> mSpesifikSekolah;
+    private List<Prestasi> mPrestasi;
 
-    public List<SpesifikSekolah> getFirstData() {
+    public List<Prestasi> getFirstData() {
         return firstData;
     }
 
-    public void setFirstData(List<SpesifikSekolah> firstData) {
+    public void setFirstData(List<Prestasi> firstData) {
         this.firstData = firstData;
     }
 
@@ -31,12 +31,12 @@ public class PrestasiResponse {
         mJumlahData = jumlahData;
     }
 
-    public List<SpesifikSekolah> getSpesifikSekolah() {
-        return mSpesifikSekolah;
+    public List<Prestasi> getSpesifikSekolah() {
+        return mPrestasi;
     }
 
-    public void setSpesifikSekolah(List<SpesifikSekolah> spesifikSekolah) {
-        mSpesifikSekolah = spesifikSekolah;
+    public void setSpesifikSekolah(List<Prestasi> prestasi) {
+        mPrestasi = prestasi;
     }
 
 }

@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe_sekolah_home">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    >
 
         <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                         android:clipToPadding="false">
-            
+
             <ImageView
                     android:layout_width="match_parent"
-                       android:layout_height="200dp"
-            android:id="@+id/iv_logo_sekolah"
-            android:src="@drawable/banner_home"/>
+                    android:layout_height="200dp"
+                    android:id="@+id/iv_logo_sekolah"
+                    />
             <LinearLayout
                     android:id="@+id/ll_tentang"
                     android:layout_width="match_parent"
@@ -221,15 +227,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+
                     <android.support.v7.widget.RecyclerView
                             android:id="@+id/rv_prestasi_home"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="6dp">
+                            android:padding="6dp"
+                            android:layout_marginBottom="?android:actionBarSize">
 
                     </android.support.v7.widget.RecyclerView>
+
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="100dp"
+                               android:id="@+id/iv_prestasi_failed"
+                               android:layout_marginTop="16dp"
+                               android:layout_marginBottom="?android:actionBarSize"/>
+
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 
-</ScrollView>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

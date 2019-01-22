@@ -1,8 +1,13 @@
 package com.dscunikom.android.sekolahqu.home.sekolah.visimisi;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.BindView;
 import com.bumptech.glide.Glide;
 import com.dscunikom.android.sekolahqu.R;
@@ -17,6 +22,13 @@ public class VisiMisiActivity extends MvpActivity<VisiMisiPresenter> implements 
     ImageView imgDetail;
     @BindView(R.id.txtIsiBerita)
     TextView tvVisiMisi;
+    @BindView(R.id.txtJudul)
+    TextView tvJudul;
+    @BindView(R.id.swipe_visi_misi)
+    SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.progress_bar_visi_misi)
+    ProgressBar progressBar;
+
     SessionManager sessionManager;
     @Override
     protected VisiMisiPresenter createPresenter() {
@@ -31,29 +43,61 @@ public class VisiMisiActivity extends MvpActivity<VisiMisiPresenter> implements 
         HashMap<String , String> sekolah = sessionManager.getSekolahPref();
         String id_sekolah = sekolah.get(SessionManager.ID_SEKOLAH);
         presenter.getData(id_sekolah);
+        swipeRefresh.setOnRefreshListener(() -> presenter.getData(id_sekolah));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home : {
+                finish();
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            }
+        }
+        return true;
     }
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        imgDetail.setVisibility(View.INVISIBLE);
+        tvVisiMisi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
+        imgDetail.setVisibility(View.VISIBLE);
+        tvVisiMisi.setVisibility(View.VISIBLE);
+        tvJudul.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showDetailSekolah(Sekolah model) {
+        swipeRefresh.setRefreshing(false);
                 Glide.with(getApplicationContext())
                         .load("http://sekolahqu.dscunikom.com/uploads/profile_sekolah/"+model.getLogoSekolah())
                         .into(imgDetail);
                 tvVisiMisi.setText(model.getVisiMisi());
-
+        tvJudul.setText("VISI MISI");
     }
 
     @Override
     public void showSekolahListFailed(String message) {
+        swipeRefresh.setRefreshing(false);
+        message = "Tidak dapat memproses permintaan Anda karena kesalahan koneksi atau data kosong. Silakan coba lagi";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+        imgDetail.setVisibility(View.VISIBLE);
+        tvVisiMisi.setVisibility(View.GONE);
+        tvJudul.setVisibility(View.VISIBLE);
 
+        Glide.with(getApplicationContext())
+                .load(R.drawable.empty)
+                .into(imgDetail);
+        tvJudul.setText("Tidak Ada Data");
     }
 }

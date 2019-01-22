@@ -16,6 +16,26 @@ public class DetailAcaraPresenter extends BasePresenter<DetailAcaraView> {
             @Override
             public void onSuccess(AcaraModel model) {
                 view.showDetailAcara(model);
+                view.hideLoading();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.showDetatailFailed(message);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        });
+    }
+
+    void addFavorite(String id_acara) {
+        addSubscribe(apiStores.getDetailAcara(id_acara), new NetworkCallback<AcaraModel>() {
+            @Override
+            public void onSuccess(AcaraModel model) {
+                view.addFavoriteAcara(model);
             }
 
             @Override
@@ -25,7 +45,7 @@ public class DetailAcaraPresenter extends BasePresenter<DetailAcaraView> {
 
             @Override
             public void onFinish() {
-                view.hideLoading();
+
             }
         });
     }

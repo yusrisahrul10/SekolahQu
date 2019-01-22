@@ -3,4 +3,8 @@
     <color name="colorPrimary">#F77D00</color>
     <color name="colorPrimaryDark">#F77D00</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="vpi__background_holo_dark">#ff000000</color>
+    <color name="vpi__background_holo_light">#fff3f3f3</color>
+    <color name="colorWhite">#FFFFFF</color>
+
 </resources>

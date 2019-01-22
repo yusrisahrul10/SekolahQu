@@ -43,6 +43,15 @@
         <item>@drawable/fasilitas</item>
     </array>
 
+    <string-array name="item_array">
+        <item>Berita</item>
+        <item>Acara</item>
+        <item>Prestasi</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="data_kosong">Tidak Ada Data</string>
+    <string name="datakosong">Data Kosong</string>
+    <string name="detil_acara">Detail Acara</string>
 </resources>

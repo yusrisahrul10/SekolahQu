@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        tools:context=".home.sekolah.fasilitas.FasilitasActivity">
+        tools:context=".home.sekolah.fasilitas.FasilitasActivity"
+        android:id="@+id/swipe_fasilitas">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_kosong_fasilitas"
+                android:layout_centerInParent="true"
+                android:text="Tidak Ada Data"
+                android:textStyle="bold"
+                android:drawableTop="@drawable/empty"
+        />
 
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_fasilitas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_ekskul_fasilitas">
-            </android.support.v7.widget.RecyclerView>
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress_bar_fasilitas"
+                android:layout_centerInParent="true"/>
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_fasilitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_ekskul_fasilitas">
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

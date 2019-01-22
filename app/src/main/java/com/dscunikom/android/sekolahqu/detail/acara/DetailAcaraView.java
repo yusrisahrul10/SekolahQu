@@ -6,6 +6,7 @@ public interface DetailAcaraView {
     void showLoading();
     void hideLoading();
     void showDetailAcara(AcaraModel model);
+    void addFavoriteAcara(AcaraModel model);
     void showDetatailFailed(String message);
 
 }

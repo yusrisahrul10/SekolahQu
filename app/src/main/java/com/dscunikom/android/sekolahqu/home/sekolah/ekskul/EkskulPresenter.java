@@ -1,6 +1,10 @@
 package com.dscunikom.android.sekolahqu.home.sekolah.ekskul;
 
+import android.app.Activity;
+import android.content.Intent;
 import com.dscunikom.android.sekolahqu.base.ui.BasePresenter;
+import com.dscunikom.android.sekolahqu.detail.ekskul.DetailEkskulActivity;
+import com.dscunikom.android.sekolahqu.model.ekskul.Ekskul;
 import com.dscunikom.android.sekolahqu.model.ekskul.EkskulResponse;
 import com.dscunikom.android.sekolahqu.network.NetworkCallback;
 
@@ -15,6 +19,7 @@ public class EkskulPresenter extends BasePresenter<EkskulView> {
             @Override
             public void onSuccess(EkskulResponse model) {
                 view.showListEkskul(model);
+                view.hideLoading();
             }
 
             @Override
@@ -27,5 +32,10 @@ public class EkskulPresenter extends BasePresenter<EkskulView> {
 
             }
         });
+    }
+    void getIdToEkskulActivity(Ekskul ekskul , Activity activity){
+        Intent intent = new Intent(activity, DetailEkskulActivity.class);
+        intent.putExtra("id_ekskul", ekskul.getIdEkskul());
+        view.moveToActivity(intent);
     }
 }

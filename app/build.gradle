@@ -74,5 +74,6 @@ dependencies {
 
     //firebase
     implementation 'com.google.firebase:firebase-messaging:17.0.0'
+//    implementation 'com.google.firebase:firebase-core:16.0.5'
     implementation 'com.google.firebase:firebase-core:16.0.1'
 }

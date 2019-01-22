@@ -6,5 +6,6 @@ public interface DetailBeritaView {
     void showLoading();
     void hideLoading();
     void showDetailBerita(BeritaModel model);
-    void showDetatailFailed(String message);
+    void addFavoriteBerita(BeritaModel model);
+    void showDetailBeritaFailed(String message);
 }

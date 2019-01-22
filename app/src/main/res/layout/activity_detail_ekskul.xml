@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".detail.ekskul.DetailEkskulActivity"
+        android:id="@+id/swipe_detail_ekskul">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+    >
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/imgEskul"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                />
+
+                <TextView
+                        android:id="@+id/txtEskul"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="6dp"
+                        android:text="Nama Eskul"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"
+                        android:layout_marginTop="8dp"/>
+
+                <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_horizontal_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+                <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="@dimen/activity_vertical_margin"
+                            android:text="Nama Pembina"
+                            android:id="@+id/tv_pembina"
+                            android:textSize="14sp" />
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            tools:text="Nama Pembina"
+                            android:id="@+id/tv_pembina_ekskul"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="@dimen/activity_vertical_margin"
+                            android:text="Nama Ketua"
+                            android:id="@+id/tv_ketua"
+                            android:textSize="14sp" />
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            tools:text="Nama Ketua"
+                            android:id="@+id/tv_ketua_ekskul"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
+                </TableRow>
+                </TableLayout>
+
+                <!--<android.support.v7.widget.CardView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:id="@+id/cv_desk_eksul">-->
+
+                    <!--<TextView-->
+                            <!--android:id="@+id/txtDesEskul"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="TextView"-->
+                            <!--android:textSize="16sp" />-->
+                <!--</android.support.v7.widget.CardView>-->
+                <TextView
+                        android:id="@+id/txtDesEskul"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sodales, sem eget porttitor sagittis, mauris ante ultricies neque, a porttitor ligula nisl interdum ex. Cras auctor quam in nibh condimentum, blandit lacinia nisi fermentum. Vestibulum luctus sagittis massa. Curabitur sapien ligula, finibus eu consectetur quis, mattis non est. Ut scelerisque finibus quam ut pharetra. Maecenas rhoncus fringilla enim, quis dignissim purus cursus id. Mauris id tincidunt nisl. Morbi at lorem eget odio aliquam iaculis. Proin at est orci."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#2d3436"
+                        android:textSize="15sp" />
+                <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progress_bar_detail_ekskul"
+                        android:layout_gravity="center"
+                        android:layout_centerInParent="true"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
