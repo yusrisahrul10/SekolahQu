@@ -52,6 +52,17 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tv_pilih_kategori"
+                    android:layout_centerInParent="true"
+                    android:text="Silakan Pilih Kategori yang Ingin Anda Cari"
+                    android:textStyle="bold"
+                    android:drawableTop="@drawable/arrow_up"
+                    android:layout_below="@id/ll_buttton"
+            />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/tv_kosong_search"
                     android:layout_centerInParent="true"
                     android:text="Tidak Ada Data"

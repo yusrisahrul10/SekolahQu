@@ -97,7 +97,7 @@ public class SekolahListActivity extends MvpActivity<SekolahListPresenter> imple
     private void searchSekolah(String keyword) {
         final List<Sekolah> filteredList = new ArrayList<>();
         for (Sekolah s : listSekolahFilter) {
-            if (s.getNamaSekolah().toLowerCase().contains(keyword)) {
+            if (s.getNamaSekolah().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredList.add(s);
             }
         }

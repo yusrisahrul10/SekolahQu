@@ -51,7 +51,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
     private boolean clickedAcara = false;
     private boolean clickedPrestasi = false;
 
-    TextView tvDataKosong;
+    TextView tvDataKosong, tvPilihKategori;
 
     public SearchItemFragment() {
         // Required empty public constructor
@@ -76,7 +76,9 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         rvAcara = view.findViewById(R.id.rv_search_acara);
         rvPrestasi = view.findViewById(R.id.rv_search_prestasi);
         tvDataKosong = view.findViewById(R.id.tv_kosong_search);
-        tvDataKosong.setVisibility(View.VISIBLE);
+        tvPilihKategori = view.findViewById(R.id.tv_pilih_kategori);
+        tvDataKosong.setVisibility(View.GONE);
+        tvPilihKategori.setVisibility(View.VISIBLE);
 
         rvBerita.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         rvBerita.addOnItemTouchListener(selectItemBeritaOnRecyclerView());
@@ -103,6 +105,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
             rvPrestasi.setVisibility(View.GONE);
             rvBerita.setVisibility(View.VISIBLE);
             presenter.getDataBerita(id_sekolah);
+            searchView.setVisibility(View.VISIBLE);
         });
 
         btnAcara.setOnClickListener(view12 -> {
@@ -113,6 +116,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
             rvPrestasi.setVisibility(View.GONE);
             rvAcara.setVisibility(View.VISIBLE);
             presenter.getDataAcara(id_sekolah);
+            searchView.setVisibility(View.VISIBLE);
         });
 
         btnPrestasi.setOnClickListener(view13 -> {
@@ -123,6 +127,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
             rvBerita.setVisibility(View.GONE);
             rvPrestasi.setVisibility(View.VISIBLE);
             presenter.getDataPrestasi(id_sekolah);
+            searchView.setVisibility(View.VISIBLE);
         });
 
         return view;
@@ -174,7 +179,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_view_menu, menu);
         searchView = (android.widget.SearchView) menu.findItem(R.id.mnSearchView).getActionView();
-
+        searchView.setVisibility(View.GONE);
 
         searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
@@ -243,7 +248,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         final List<BeritaModel> filteredList = new ArrayList<>();
 
         for (BeritaModel s : listBeritaFilter) {
-            if (s.getNamaBerita().toLowerCase().contains(keyword)) {
+            if (s.getNamaBerita().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredList.add(s);
             }
         }
@@ -262,7 +267,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
     private void searchAcara(String keyword) {
         final List<AcaraModel> filteredList = new ArrayList<>();
         for (AcaraModel s : listAcaraFilter) {
-            if (s.getNamaAcara().toLowerCase().contains(keyword)) {
+            if (s.getNamaAcara().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredList.add(s);
             }
         }
@@ -281,7 +286,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
     private void searchPrestasi(String keyword) {
         final List<Prestasi> filteredList = new ArrayList<>();
         for (Prestasi s : listPrestasiFilter) {
-            if (s.getNamaPrestasi().toLowerCase().contains(keyword)) {
+            if (s.getNamaPrestasi().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredList.add(s);
             }
         }
@@ -349,9 +354,11 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         if (listBerita.size() == 0) {
             tvDataKosong.setVisibility(View.VISIBLE);
             rvBerita.setVisibility(View.GONE);
+            tvPilihKategori.setVisibility(View.GONE);
         } else {
             rvBerita.setAdapter(new BeritaAdapter(listBerita, R.layout.item_content, this.getActivity()));
             tvDataKosong.setVisibility(View.GONE);
+            tvPilihKategori.setVisibility(View.GONE);
             rvBerita.setVisibility(View.VISIBLE);
         }
 
@@ -363,6 +370,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         tvDataKosong.setVisibility(View.VISIBLE);
         rvBerita.setVisibility(View.GONE);
+        tvPilihKategori.setVisibility(View.GONE);
     }
 
     @Override
@@ -372,10 +380,12 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         if (listAcara.size() == 0) {
             tvDataKosong.setVisibility(View.VISIBLE);
             rvAcara.setVisibility(View.GONE);
+            tvPilihKategori.setVisibility(View.GONE);
         } else {
             rvAcara.setAdapter(new AcaraAdapter(listAcara, R.layout.item_content, this.getActivity()));
             tvDataKosong.setVisibility(View.GONE);
             rvAcara.setVisibility(View.VISIBLE);
+            tvPilihKategori.setVisibility(View.GONE);
         }
 
     }
@@ -386,6 +396,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         tvDataKosong.setVisibility(View.VISIBLE);
         rvAcara.setVisibility(View.GONE);
+        tvPilihKategori.setVisibility(View.GONE);
     }
 
     @Override
@@ -395,10 +406,12 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         if (listPrestasi.size() == 0) {
             tvDataKosong.setVisibility(View.VISIBLE);
             rvPrestasi.setVisibility(View.GONE);
+            tvPilihKategori.setVisibility(View.GONE);
         } else {
             rvPrestasi.setAdapter(new PrestasiAdapter(listPrestasi, R.layout.item_content, this.getActivity()));
             tvDataKosong.setVisibility(View.GONE);
             rvPrestasi.setVisibility(View.VISIBLE);
+            tvPilihKategori.setVisibility(View.GONE);
         }
     }
 
@@ -408,6 +421,7 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         tvDataKosong.setVisibility(View.VISIBLE);
         rvPrestasi.setVisibility(View.GONE);
+        tvPilihKategori.setVisibility(View.GONE);
     }
 
     @Override
