@@ -261,7 +261,21 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
             RecyclerView.Adapter fAdapter = new BeritaAdapter(filteredList, R.layout.item_content, this.getActivity());
             reloadViewBerita(fAdapter, filteredList);
         }
+    }
 
+    private void reloadViewBerita(RecyclerView.Adapter adapter, List<BeritaModel> list) {
+        rvBerita.setAdapter(adapter);
+        new RecyclerItemClickListener(getActivity(), rvBerita, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                presenter.getIdBerita(list.get(position), activity);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        });
     }
 
     private void searchAcara(String keyword) {
@@ -323,21 +337,6 @@ public class SearchItemFragment extends MvpFragment<SearchItemPresenter> impleme
             @Override
             public void onItemClick(View view, int position) {
                 presenter.getIdAcara(list.get(position), activity);
-            }
-
-            @Override
-            public void onLongItemClick(View view, int position) {
-
-            }
-        });
-    }
-
-    private void reloadViewBerita(RecyclerView.Adapter adapter, List<BeritaModel> list) {
-        rvBerita.setAdapter(adapter);
-        new RecyclerItemClickListener(getActivity(), rvBerita, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                presenter.getIdBerita(list.get(position), activity);
             }
 
             @Override
